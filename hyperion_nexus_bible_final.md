@@ -942,11 +942,11 @@ The Early Interstellar Phase represents the starting point for all player civili
 
 Civilizations at this development level demonstrate specific patterns of energy harnessing and consumption, with competitive advantages emerging through optimization and innovation:
 
-  • **Planetary Exploitation Efficiency**: Player civilizations compete to develop the most efficient methods for utilizing home planet energy resources 
-  • **Orbital Infrastructure Scale**: The size and sophistication of orbital energy collection facilities becomes an early indicator of developmental trajectory 
-  • **Stellar Harnessing Innovation**: Pioneering approaches to direct stellar energy collection provide significant advantages in early development races 
-  • **Fusion Mastery Optimization**: Advanced fusion implementations create energy production advantages that translate directly to faster development 
-  • **Antimatter Production Scale**: Limited antimatter creation capabilities provide critical advantages for military applications and advanced research
+    • **Planetary Exploitation Efficiency**: Player civilizations compete to develop the most efficient methods for utilizing home planet energy resources 
+    • **Orbital Infrastructure Scale**: The size and sophistication of orbital energy collection facilities becomes an early indicator of developmental trajectory 
+    • **Stellar Harnessing Innovation**: Pioneering approaches to direct stellar energy collection provide significant advantages in early development races 
+    • **Fusion Mastery Optimization**: Advanced fusion implementations create energy production advantages that translate directly to faster development 
+    • **Antimatter Production Scale**: Limited antimatter creation capabilities provide critical advantages for military applications and advanced research
 
 The AI assistant manages the optimization of these energy systems, automatically balancing resource allocation and infrastructure development while the player focuses on strategic decisions rather than micromanagement. This allows players to concentrate on competitive positioning and diplomatic relationships rather than technical details.
 
