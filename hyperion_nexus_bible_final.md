@@ -910,7 +910,8 @@ The foundation of interstellar civilization, characterized by initial expansion,
 
 #### Mature Development Phase (K-Scale 2.5-3.5): 
 
-The refinement of interstellar civilization, characterized by sophisticated technologies, complex social structures, and nuanced cultural expression. Upon entering this phase, cultural development partially resets (to 50-60%), creating new developmental challenges. Ternary synthesis becomes possible around K-Scale 3.0 as civilizations approach 100% cultural development for this phase:  
+The refinement of interstellar civilization, characterized by sophisticated technologies, complex social structures, and nuanced cultural expression. Upon entering this phase, cultural development partially resets (to 50-60%), creating new developmental challenges. Ternary synthesis becomes possible around K-Scale 3.0 as civilizations approach 100% cultural development for this phase:
+
 • **K-Scale 2.5-3.5 (Galactic Era)**: The advanced phase where true galactic powers develop and large-scale alliance structures become necessary for continued advancement   
 • **K-Scale 3.5-4.5 (Intergalactic Era)**: The elite phase where the most successful player civilizations begin expansion beyond the home galaxy
 
@@ -925,11 +926,11 @@ These divisions provide a framework for measuring advancement while creating nat
 
 A civilization's Kardashev Scale rating is determined through analysis of several key factors, creating a multidimensional competition beyond simple resource accumulation:
 
-* • **Energy Consumption**: Total energy utilized across all civilization activities, creating competition for energy-rich regions   
-* • **Energy Source Sophistication**: Types of energy sources successfully harnessed, driving research races for advanced collection methods   
-* • **Energy Efficiency**: Ratio of energy input to useful output across systems, creating advantages for civilizations that optimize utilization   
-* • **Energy Control Precision**: Ability to manipulate energy at fundamental levels, enabling advanced applications unavailable to less developed civilizations  
-*  • **Energy Application Diversity**: Range of purposes for which energy is effectively utilized, creating versatility advantages in competitive situations
+  • **Energy Consumption**: Total energy utilized across all civilization activities, creating competition for energy-rich regions   
+  • **Energy Source Sophistication**: Types of energy sources successfully harnessed, driving research races for advanced collection methods   
+  • **Energy Efficiency**: Ratio of energy input to useful output across systems, creating advantages for civilizations that optimize utilization   
+  • **Energy Control Precision**: Ability to manipulate energy at fundamental levels, enabling advanced applications unavailable to less developed civilizations  
+  • **Energy Application Diversity**: Range of purposes for which energy is effectively utilized, creating versatility advantages in competitive situations
 
 This multifaceted approach ensures that advancement along the Kardashev Scale involves multiple competitive dimensions, with different player civilizations potentially excelling in different aspects while maintaining similar overall ratings. This creates natural specialization and complementarity that encourages alliance formation between civilizations with different strengths.
 
@@ -941,11 +942,11 @@ The Early Interstellar Phase represents the starting point for all player civili
 
 Civilizations at this development level demonstrate specific patterns of energy harnessing and consumption, with competitive advantages emerging through optimization and innovation:
 
-• **Planetary Exploitation Efficiency**: Player civilizations compete to develop the most efficient methods for utilizing home planet energy resources 
-• **Orbital Infrastructure Scale**: The size and sophistication of orbital energy collection facilities becomes an early indicator of developmental trajectory 
-• **Stellar Harnessing Innovation**: Pioneering approaches to direct stellar energy collection provide significant advantages in early development races 
-• **Fusion Mastery Optimization**: Advanced fusion implementations create energy production advantages that translate directly to faster development 
-• **Antimatter Production Scale**: Limited antimatter creation capabilities provide critical advantages for military applications and advanced research
+  • **Planetary Exploitation Efficiency**: Player civilizations compete to develop the most efficient methods for utilizing home planet energy resources 
+  • **Orbital Infrastructure Scale**: The size and sophistication of orbital energy collection facilities becomes an early indicator of developmental trajectory 
+  • **Stellar Harnessing Innovation**: Pioneering approaches to direct stellar energy collection provide significant advantages in early development races 
+  • **Fusion Mastery Optimization**: Advanced fusion implementations create energy production advantages that translate directly to faster development 
+  • **Antimatter Production Scale**: Limited antimatter creation capabilities provide critical advantages for military applications and advanced research
 
 The AI assistant manages the optimization of these energy systems, automatically balancing resource allocation and infrastructure development while the player focuses on strategic decisions rather than micromanagement. This allows players to concentrate on competitive positioning and diplomatic relationships rather than technical details.
 
