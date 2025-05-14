@@ -4454,65 +4454,64 @@ The development of faster-than-light travel represents perhaps the most signific
 
 The first viable FTL system involves the manipulation of space-time to create a localized warp field:
 
-   • **Operational Principle**: Compression of space-time ahead of the vessel while expanding it behind 
+   • **Operational Principle**: Compression of space-time ahead of the vessel while expanding it behind
    
-   • **Energy Requirements**: Requires exotic matter with negative energy density to stabilize warp fields 
+   • **Energy Requirements**: Requires exotic matter with negative energy density to stabilize warp fields
    
-   • **Speed Capabilities**: Typically 1-10 light years per standard year of travel time 
+   • **Progression and Capabilities**: Warp technology develops through five MK levels:
+      • **MK I (K-Scale 0.9-1.0)**: Warp Factor 3.0, Speed: 38.94 Ly/year.
+      • **MK II (K-Scale 1.0-1.1)**: Warp Factor 4.5, Speed: 150.44 Ly/year.
+      • **MK III (K-Scale 1.1-1.2)**: Warp Factor 6.0, Speed: 392.50 Ly/year.
+      • **MK IV (K-Scale 1.2-1.3)**: Warp Factor 7.5, Speed: 825.79 Ly/year.
+      • **MK V (K-Scale 1.3-1.5)**: Warp Factor 9.0, Speed: 1,516.38 Ly/year.
    
-   • **Range Limitations**: Effective range of 50-100 light years before requiring maintenance 
+   • **Range Limitations**: Maximum effective range of 250 Light Years before requiring maintenance.
    
    • **Infrastructure Needs**: Specialized construction facilities for warp field generators
 
 Warp technology represents a civilization's first step into true interstellar capability, enabling the establishment of small stellar empires spanning dozens of systems. However, its relatively slow speed and limited range make it impractical for galactic-scale civilization, restricting development to regional clusters.
 
-### Transwarp Technology (K-Scale 1.5-2.0)
+
+### Transwarp Technology (K-Scale 1.5-2.5)
 
 An evolution of basic warp technology, transwarp systems achieve higher speeds through more sophisticated field manipulation:
 
-   • **Operational Principle**: Creation of a subspace conduit that bypasses normal space-time constraints 
+   • **Operational Principle**: Creation of a subspace conduit that bypasses normal space-time constraints
    
-   • **Energy Requirements**: Requires specialized transwarp coils and significant power generation capacity 
+   • **Energy Requirements**: Requires specialized transwarp coils and significant power generation capacity
    
-   • **Speed Capabilities**: Typically 10-50 light years per standard year of travel time 
+   • **Progression and Capabilities**: Transwarp technology develops through five MK levels, with MK I starting at 10 times the speed of Warp MK V (15,163.81 Ly/year):
+      • **MK I (K-Scale 1.5-1.7)**: Speed: 15,163.81 Ly/year.
+      • **MK II (K-Scale 1.7-1.9)**: Speed: 41,219.51 Ly/year.
+      • **MK III (K-Scale 1.9-2.1)**: Speed: 112,046.25 Ly/year.
+      • **MK IV (K-Scale 2.1-2.3)**: Speed: 304,573.29 Ly/year.
+      • **MK V (K-Scale 2.3-2.5)**: Speed: 827,916.03 Ly/year.
    
-   • **Range Limitations**: Effective range of 500-1,000 light years before requiring maintenance 
+   • **Range Limitations**: Maximum effective range of 2,500 Light Years before requiring maintenance.
    
    • **Infrastructure Needs**: Dedicated transwarp facilities for field calibration and maintenance
 
 Transwarp technology enables civilizations to expand beyond their local stellar neighborhood, establishing presence across significant portions of a galactic arm. This technology makes regular contact between distant colonies practical, enabling the development of true interstellar political and economic systems.
 
-### Jump Drive Technology (K-Scale 2.0-2.5)
 
-Jump drives represent a fundamental shift from continuous FTL travel to instantaneous point-to-point transportation:
+### HyperJump Technology (K-Scale 2.5-3.5)
 
-   • **Operational Principle**: Creation of a temporary wormhole connecting departure and destination points 
-   
-   • **Energy Requirements**: Exponentially increases with jump distance, limiting practical range 
-   
-   • **Speed Capabilities**: Instantaneous transit regardless of distance within range limitations 
-   
-   • **Range Limitations**: Effective single jump range of 10-100 light years depending on technology level 
-   
-   • **Infrastructure Needs**: Jump calculation supercomputers and massive power generation facilities
+HyperJump technology offers instantaneous point-to-point transit, with effectiveness defined by jump range and cooldown periods. It develops through five MK levels:
 
-Jump drive technology transforms interstellar travel from a journey to a transition, eliminating the experience of travel time for passengers. This capability dramatically changes military strategy, trade relationships, and colonial administration by allowing rapid response to distant events.
-
-### HyperJump Technology (K-Scale 2.5-3.0)
-
-An advanced evolution of jump drive technology, hyperjump systems overcome many earlier limitations:
-
-   • **Operational Principle**: Transition through hyperspace, a dimension with different physical laws 
+   • **Operational Principle**: Transition through hyperspace, a dimension with different physical laws, enabling instantaneous travel.
    
-   • **Energy Requirements**: Linear rather than exponential energy increase with distance 
+   • **Energy Requirements**: Linear rather than exponential energy increase with distance compared to less advanced jump concepts.
    
-   • **Speed Capabilities**: Instantaneous transit with minimal calculation time regardless of distance 
+   • **Progression and Capabilities**: (Base Cooldown MK I: 3 game days = approx. 9.42 real days. Base Range MK I for e^n formula: 10,000 Ly)
+      • **MK I (K-Scale 2.5-2.7)**: Jump Range: 30,000 Ly, Cooldown: 3.00 game days (approx. 0.0258 real years), Effective Speed: 1,163,216.56 Ly/year.
+      • **MK II (K-Scale 2.7-2.9)**: Jump Range: 80,000 Ly, Cooldown: 3.00 game days (approx. 0.0258 real years), Effective Speed: 3,101,910.83 Ly/year.
+      • **MK III (K-Scale 2.9-3.1)**: Jump Range: 210,000 Ly, Cooldown: 0.89 game days (approx. 0.0076 real years), Effective Speed: 27,480,991.24 Ly/year.
+      • **MK IV (K-Scale 3.1-3.3)**: Jump Range: 550,000 Ly, Cooldown: 0.19 game days (approx. 0.0016 real years), Effective Speed: 341,210,191.08 Ly/year.
+      • **MK V (K-Scale 3.3-3.5)**: Jump Range: 1,490,000 Ly, Cooldown: 0.03 game days (approx. 0.0003 real years), Effective Speed: 5,641,903,239.45 Ly/year.
    
-   • **Range Limitations**: Effective single jump range of 1,000-10,000 light years 
-   
-   • **Infrastructure Needs**: Hyperspace navigation systems and dimensional stabilizers
+   • **Infrastructure Needs**: Hyperspace navigation systems and dimensional stabilizers.
 
-HyperJump technology enables true galactic-scale civilization, making any point in the galaxy accessible within a reasonable timeframe. This capability transforms civilization from a collection of semi-independent stellar regions to an integrated galactic society with unified cultural and economic systems.
+HyperJump technology enables true galactic-scale civilization, making any point in the galaxy accessible within a reasonable timeframe. This capability transforms civilization from a collection of semi-independent stellar regions to an integrated galactic society with unified cultural and economic systems. (Note: HyperJump MK I effective speed is approx. 1.40 times faster than Transwarp MK V).
 
 ### Stargate Networks (K-Scale 3.0-3.5)
 
