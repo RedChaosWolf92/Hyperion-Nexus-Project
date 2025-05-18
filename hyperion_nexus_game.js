@@ -157,467 +157,437 @@ const kScaleEvents = {
     ],
     "1.5": [
         { id: "e1.5_1", text_template: "Year {gameYear}: A cosmic string fragment passes through your system, causing widespread temporal distortions and technological malfunctions.", choices: [{id:"c1", text:"(Captain) Implement emergency protocols, focus on ship integrity and crew safety above all.", effects:{military:10, science:-3, ecological:-2}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Mobilize scientific teams to study the phenomenon and develop countermeasures, while managing public panic.", effects:{science:10, psychic:5, subversive:3}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Isolate affected systems and hope the phenomenon passes quickly with minimal long-term damage.", effects:{ecological:3, subversive: -2}} ] },
-        { id: "e1.5_2", text_template: "Year {gameYear}: You encounter a K-Scale 2 civilization that views your species as primitive and potentially dangerous. They demand you cease expansion into 'their' region of space.", choices: [{id:"c1", text:"(Captain) Defy their demands, asserting your right to explore and expand, prepare for a confrontation.", effects:{military:15, subversive:5, ecological:-5}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Attempt diplomatic engagement, seeking to understand their concerns and negotiate a peaceful coexistence.", effects:{psychic:7, ecological:5, science:3, military:-5}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Comply for now, secretly gathering intelligence on their capabilities and weaknesses.", effects:{subversive:10, science:2, military:-3}} ] },
-        { id: "e1.5_3", text_template: "Year {gameYear}: A powerful psionic entity makes contact, offering immense knowledge in exchange for allowing it to 'experience' your civilization through a collective link.", choices: [{id:"c1", text:"(Captain) Reject the offer, viewing it as a potential security threat and violation of individual minds.", effects:{military:7, psychic:-5, subversive:3}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Accept cautiously, establishing strict protocols and oversight for the link, hoping for enlightenment.", effects:{psychic:15, science:10, ecological:-3, subversive:-5}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Attempt to bargain, offering limited access in exchange for specific, verifiable knowledge.", effects:{science:7, subversive:5, psychic:3}} ] },
-        { id: "e1.5_4", text_template: "Year {gameYear}: Your civilization is on the cusp of a major evolutionary leap, with widespread emergence of new abilities (e.g., enhanced intelligence, physical prowess, or unique senses).", choices: [{id:"c1", text:"(Captain) Focus on harnessing these new abilities for military and strategic advantage.", effects:{military:10, science:5, psychic:3}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Guide the integration of these abilities into society, fostering a new era of cultural and scientific growth.", effects:{science:10, ecological:5, psychic:7}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Implement programs to ensure equitable development and prevent societal stratification due to new abilities.", effects:{ecological:7, subversive:5, psychic:3}} ] },
-        { id: "e1.5_5", text_template: "Year {gameYear}: A vote is called to determine the primary direction of your civilization for the next century: Unfettered Scientific Pursuit, Galactic Military Dominance, or Deep Ecological Harmony.", choices: [{id:"c1", text:"(Captain) Advocate for Military Dominance: 'Strength is the only true currency in the galaxy.'", effects:{military:20, science:-5, ecological:-10}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Champion Scientific Pursuit: 'Knowledge is the key to unlocking our ultimate destiny.'", effects:{science:20, psychic:5, military:-5}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Push for Ecological Harmony: 'We must be stewards of life, not its destroyers.'", effects:{ecological:20, psychic:5, subversive:-5}} ] },
-        { id: "e1.5_6", text_template: "Year {gameYear}: The {starshipName} discovers a stable wormhole leading to an entirely different, unexplored galaxy. This is the final event before the game concludes.", choices: [{id:"c1", text:"(Captain) Prepare an armed expeditionary fleet to be the first to enter and secure a foothold.", effects:{military:15, science:5, subversive:5}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Announce the discovery to your people, heralding a new age of exploration and inviting all to participate in the grand journey ahead.", effects:{science:10, ecological:7, psychic:8}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Establish a permanent research station to study the wormhole before committing to intergalactic travel.", effects:{science:15, subversive:3, ecological:2}} ] }
+        { id: "e1.5_2", text_template: "Year {gameYear}: Your civilization has reached a technological threshold where artificial general intelligence becomes possible, with all its potential and risks.", choices: [{id:"c1", text:"(Captain) Develop AGI under strict military oversight, focusing on defense and strategic applications.", effects:{military:10, science:5, ecological:-3}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Pursue a balanced approach with ethical guidelines and civilian oversight of AGI development.", effects:{science:7, psychic:5, ecological:3}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Ban AGI research entirely, focusing instead on enhancing biological intelligence.", effects:{psychic:7, ecological:3, science:-5}} ] },
+        { id: "e1.5_3", text_template: "Year {gameYear}: A neighboring civilization has achieved a significant technological breakthrough, potentially shifting the balance of power in their favor.", choices: [{id:"c1", text:"(Captain) Launch a preemptive strike to secure their research facilities before they can weaponize the technology.", effects:{military:15, subversive:5, ecological:-10}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Propose a mutual research and development treaty to share benefits and maintain peaceful relations.", effects:{science:10, ecological:5, psychic:5}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Accelerate your own research in the same field, accepting the temporary power imbalance.", effects:{science:7, military:-3}} ] },
+        { id: "e1.5_4", text_template: "Year {gameYear}: Your scientists have discovered a method to enhance cognitive abilities through genetic modification, but it requires irreversible changes to the species.", choices: [{id:"c1", text:"(Captain) Implement the modifications for military personnel first, creating an elite force.", effects:{military:10, science:5, psychic:-3}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Make the enhancement optional for all citizens, with full disclosure of risks and benefits.", effects:{science:7, psychic:7, ecological:3}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Reject genetic modification in favor of technological augmentation that can be removed if needed.", effects:{science:5, ecological:3, psychic:-2}} ] },
+        { id: "e1.5_5", text_template: "Year {gameYear}: A massive gravitational anomaly is detected at the edge of your territory, potentially a natural wormhole or artificial construct.", choices: [{id:"c1", text:"(Captain) Secure the anomaly with military forces, treating it as a strategic asset of the highest priority.", effects:{military:10, science:5, subversive:3}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Establish a scientific outpost to study the anomaly while inviting other civilizations to participate.", effects:{science:12, ecological:5, psychic:3}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Establish a quarantine zone around the anomaly until its nature and safety can be fully determined.", effects:{subversive:7, military:3, science:-2}} ] },
+        { id: "e1.5_6", text_template: "Year {gameYear}: Your civilization faces a critical decision about its fundamental relationship with technology as you approach K-Scale 1.5.", choices: [{id:"c1", text:"(Captain) Embrace full integration of technology and biology, becoming a cybernetic civilization.", effects:{science:15, military:10, ecological:-5}, role_affinity: "Captain"}, {id:"c2", text:"(Civ Leader) Pursue a balanced approach where technology serves but does not fundamentally alter your species.", effects:{ecological:10, psychic:5, science:5}, role_affinity: "Civilization Leader"}, {id:"c3", text:"Reject further technological integration, focusing instead on developing natural biological potential.", effects:{psychic:15, ecological:5, science:-10}} ] }
     ]
 };
 
-// --- Game Logic Functions ---
+// Initialize call counter for displayCurrentState to prevent infinite recursion
+displayCurrentState.callCount = 0;
 
+// --- UI Management Functions ---
 function clearGameUI() {
-    const gameOutput = document.getElementById("game-output");
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const resultsArea = document.getElementById("results-area");
-
-    if(gameOutput) gameOutput.innerHTML = "";
-    if(questionArea) questionArea.innerHTML = "";
-    if(choicesArea) choicesArea.innerHTML = "";
-    if(storyArea) storyArea.innerHTML = "";
-    if(resultsArea) resultsArea.style.display = "none";
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const resultsArea = document.getElementById("results-area");
+        
+        if(questionArea) questionArea.textContent = "";
+        if(choicesArea) choicesArea.innerHTML = "";
+        if(storyArea) storyArea.innerHTML = "";
+        if(resultsArea) resultsArea.style.display = "none";
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'clearGameUI' });
+            window.HyperionErrorHandling.displayErrorToUser("Failed to clear game UI. Please refresh the page.", null, true);
+        } else {
+            console.error("Error in clearGameUI:", error);
+        }
+        return false;
+    }
 }
 
 function updateStatusBar() {
-    const statusBar = document.getElementById("statusBar"); 
-    if (statusBar) {
-        statusBar.textContent = `Game Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale.toFixed(1)} | Role: ${gameState.playerRole || 'N/A'}`;
+    try {
+        const statusBar = document.getElementById("statusBar");
+        if (!statusBar) {
+            throw new Error("Status bar element not found");
+        }
+        
+        statusBar.textContent = `Game Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale.toFixed(1)} | Role: ${gameState.playerRole || "N/A"}`;
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'updateStatusBar' });
+            window.HyperionErrorHandling.displayErrorToUser("Failed to update status bar.", null, false);
+        } else {
+            console.error("Error in updateStatusBar:", error);
+        }
+        return false;
     }
 }
 
 function displayCurrentState() {
-    // Static counter to detect infinite recursion
-    if (typeof displayCurrentState.callCount === 'undefined') {
+    // Initialize call counter if not already set
+    if (typeof displayCurrentState.callCount !== 'number') {
         displayCurrentState.callCount = 0;
     }
+    
+    // Increment call counter
     displayCurrentState.callCount++;
     
-    const questionArea = document.getElementById("question-area"); 
-    const choicesArea = document.getElementById("choices-area");    
-    const storyArea = document.getElementById("storyArea");      
-    const gameOutput = document.getElementById("game-output");
-    const debugLog = document.getElementById("debugLog");
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const gameOutput = document.getElementById("game-output");
+        const debugLog = document.getElementById("debugLog");
 
-    if (debugLog) {
-        debugLog.innerHTML += "DEBUG: displayCurrentState called #" + displayCurrentState.callCount + 
-                             ". Phase: " + gameState.gamePhase + 
-                             ", SubPhase: " + gameState.subPhase + 
-                             ", QIndex: " + gameState.currentQuestionIndex + "<br>";
-        debugLog.innerHTML += "DEBUG: UI Elements - gameOutput: " + (gameOutput ? "Found" : "MISSING") + 
-                             ", questionArea: " + (questionArea ? "Found" : "MISSING") + 
-                             ", choicesArea: " + (choicesArea ? "Found" : "MISSING") + 
-                             ", storyArea: " + (storyArea ? "Found" : "MISSING") + "<br>";
-    }
-    
-    // Safety check to prevent infinite recursion
-    if (displayCurrentState.callCount > 10) {
-        console.error("CRITICAL ERROR: Possible infinite recursion detected in displayCurrentState!");
-        if(gameOutput) gameOutput.innerHTML = "<span style='color:red;'>CRITICAL ERROR: Infinite recursion detected. Game stopped.</span>";
-        if(debugLog) debugLog.innerHTML += "DEBUG: CRITICAL ERROR - Infinite recursion detected! Call count: " + displayCurrentState.callCount + "<br>";
-        displayCurrentState.callCount = 0; // Reset for next attempt
-        return;
-    }
+        if (debugLog) {
+            debugLog.innerHTML += "DEBUG: displayCurrentState called #" + displayCurrentState.callCount + 
+                                ". Phase: " + gameState.gamePhase + 
+                                ", SubPhase: " + gameState.subPhase + 
+                                ", QIndex: " + gameState.currentQuestionIndex + "<br>";
+            debugLog.innerHTML += "DEBUG: UI Elements - gameOutput: " + (gameOutput ? "Found" : "MISSING") + 
+                                ", questionArea: " + (questionArea ? "Found" : "MISSING") + 
+                                ", choicesArea: " + (choicesArea ? "Found" : "MISSING") + 
+                                ", storyArea: " + (storyArea ? "Found" : "MISSING") + "<br>";
+        }
+        
+        // Safety check to prevent infinite recursion
+        if (displayCurrentState.callCount > 10) {
+            const errorMsg = "CRITICAL ERROR: Possible infinite recursion detected in displayCurrentState!";
+            if (window.HyperionErrorHandling) {
+                window.HyperionErrorHandling.logError(errorMsg, window.HyperionErrorHandling.ErrorType.GAME_STATE, { callCount: displayCurrentState.callCount });
+                window.HyperionErrorHandling.displayErrorToUser("Critical error detected. Game stopped to prevent browser crash.", null, true);
+            } else {
+                console.error(errorMsg);
+                if(gameOutput) gameOutput.innerHTML = "<span style='color:red;'>CRITICAL ERROR: Infinite recursion detected. Game stopped.</span>";
+                if(debugLog) debugLog.innerHTML += "DEBUG: CRITICAL ERROR - Infinite recursion detected! Call count: " + displayCurrentState.callCount + "<br>";
+            }
+            displayCurrentState.callCount = 0; // Reset for next attempt
+            return;
+        }
 
-    if (!questionArea || !choicesArea || !storyArea || !gameOutput) {
-        console.error("CRITICAL UI ERROR: One or more essential display elements not found in displayCurrentState!");
-        if(gameOutput) gameOutput.innerHTML = "<span style='color:red;'>CRITICAL UI ERROR: Essential display elements missing. Cannot continue.</span>";
-        if(debugLog) debugLog.innerHTML += "DEBUG: CRITICAL ERROR - Missing essential UI elements!<br>";
-        return;
-    }
+        if (!questionArea || !choicesArea || !storyArea || !gameOutput) {
+            const errorMsg = "CRITICAL UI ERROR: One or more essential display elements not found in displayCurrentState!";
+            if (window.HyperionErrorHandling) {
+                window.HyperionErrorHandling.logError(errorMsg, window.HyperionErrorHandling.ErrorType.UI, { 
+                    questionArea: !!questionArea, 
+                    choicesArea: !!choicesArea, 
+                    storyArea: !!storyArea, 
+                    gameOutput: !!gameOutput 
+                });
+                window.HyperionErrorHandling.displayErrorToUser("Critical UI error. Essential elements missing.", null, true);
+            } else {
+                console.error(errorMsg);
+                if(gameOutput) gameOutput.innerHTML = "<span style='color:red;'>CRITICAL UI ERROR: Essential display elements missing. Cannot continue.</span>";
+                if(debugLog) debugLog.innerHTML += "DEBUG: CRITICAL ERROR - Missing essential UI elements!<br>";
+            }
+            return;
+        }
 
-    let currentQuestion;
-    let questionSet;
+        let currentQuestion;
+        let questionSet;
 
-    if (gameState.gamePhase === "species_creation") {
-        questionSet = speciesCreationQuestions;
-        if (gameState.currentQuestionIndex < questionSet.length) {
-            currentQuestion = questionSet[gameState.currentQuestionIndex];
-            questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
-            choicesArea.innerHTML = ''; 
-            currentQuestion.choices.forEach(choice => {
-                if (!choice.condition || choice.condition(gameState.culturalPathways)) {
-                    const button = document.createElement('button');
-                    button.textContent = choice.text;
-                    button.onclick = () => handleChoice(choice.id);
-                    choicesArea.appendChild(button);
-                }
+        if (gameState.gamePhase === "species_creation") {
+            questionSet = speciesCreationQuestions;
+            if (gameState.currentQuestionIndex < questionSet.length) {
+                currentQuestion = questionSet[gameState.currentQuestionIndex];
+                questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
+                choicesArea.innerHTML = ''; 
+                currentQuestion.choices.forEach(choice => {
+                    if (!choice.condition || choice.condition(gameState.culturalPathways)) {
+                        const button = document.createElement('button');
+                        button.textContent = choice.text;
+                        button.onclick = () => handleChoice(choice.id);
+                        choicesArea.appendChild(button);
+                    }
+                });
+            } else {
+                showSpeciesSummary();
+            }
+        } else if (gameState.gamePhase === "starship_creation") {
+            questionSet = starshipCreationQuestions;
+            if (gameState.currentQuestionIndex < questionSet.length) {
+                currentQuestion = questionSet[gameState.currentQuestionIndex];
+                questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
+                choicesArea.innerHTML = ''; 
+                currentQuestion.choices.forEach(choice => {
+                    if (!choice.condition || choice.condition(gameState.culturalPathways)) {
+                        const button = document.createElement('button');
+                        button.textContent = choice.text;
+                        button.onclick = () => handleChoice(choice.id);
+                        choicesArea.appendChild(button);
+                    }
+                });
+            } else {
+                showStarshipSummary();
+            }
+        } else if (gameState.gamePhase === "role_selection_initial") {
+            showRoleSelectionInitial();
+        } else if (gameState.gamePhase === "k_scale_progression") {
+            if (gameState.subPhase === "event") {
+                showKScaleEvent();
+            } else if (gameState.subPhase === "role_change_decision") {
+                showRoleChangeDecision();
+            } else { 
+                gameState.subPhase = "event";
+                showKScaleEvent();
+            }
+        } else if (gameState.gamePhase === "game_end") {
+            // Game end is handled by endGame function
+        }
+        updateStatusBar();
+        
+        // Reset call counter after successful execution
+        displayCurrentState.callCount = 0;
+        
+        // Save game state after successful display update
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.saveGameState(gameState);
+        }
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
+                action: 'displayCurrentState',
+                gamePhase: gameState.gamePhase,
+                subPhase: gameState.subPhase,
+                questionIndex: gameState.currentQuestionIndex
             });
+            window.HyperionErrorHandling.displayErrorToUser("Error updating game display. Try refreshing the page.", null, true);
         } else {
-            showSpeciesSummary();
+            console.error("Error in displayCurrentState:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error updating game display. Try refreshing the page.</span><br>";
         }
-    } else if (gameState.gamePhase === "starship_creation") {
-        questionSet = starshipCreationQuestions;
-        if (gameState.currentQuestionIndex < questionSet.length) {
-            currentQuestion = questionSet[gameState.currentQuestionIndex];
-            questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
-            choicesArea.innerHTML = ''; 
-            currentQuestion.choices.forEach(choice => {
-                if (!choice.condition || choice.condition(gameState.culturalPathways)) {
-                    const button = document.createElement('button');
-                    button.textContent = choice.text;
-                    button.onclick = () => handleChoice(choice.id);
-                    choicesArea.appendChild(button);
-                }
-            });
-        } else {
-            showStarshipSummary();
-        }
-    } else if (gameState.gamePhase === "role_selection_initial") {
-        showRoleSelectionInitial();
-    } else if (gameState.gamePhase === "k_scale_progression") {
-        if (gameState.subPhase === "event") {
-            showKScaleEvent();
-        } else if (gameState.subPhase === "role_change_decision") {
-            showRoleChangeDecision();
-        } else { 
-            gameState.subPhase = "event";
-            showKScaleEvent();
-        }
-    } else if (gameState.gamePhase === "game_end") {
-        // Game end is handled by endGame function
+        
+        // Reset call counter after error
+        displayCurrentState.callCount = 0;
+        return false;
     }
-    updateStatusBar();
 }
 
 function handleChoice(choiceId) {
-    const gameOutput = document.getElementById("game-output");
-    const debugLog = document.getElementById("debugLog");
-    if (debugLog) debugLog.innerHTML += `DEBUG: handleChoice - Phase: ${gameState.gamePhase}, QIndex: ${gameState.currentQuestionIndex}, EventCounter: ${gameState.eventCounter}, Choice: ${choiceId}<br>`;
+    try {
+        // Input validation
+        if (!choiceId) {
+            throw new Error("Invalid choice ID: " + choiceId);
+        }
+        
+        const gameOutput = document.getElementById("game-output");
+        const debugLog = document.getElementById("debugLog");
+        if (debugLog) debugLog.innerHTML += `DEBUG: handleChoice - Phase: ${gameState.gamePhase}, QIndex: ${gameState.currentQuestionIndex}, EventCounter: ${gameState.eventCounter}, Choice: ${choiceId}<br>`;
 
-    let questionSet, choiceMade, questionTextForLog;
+        let questionSet, choiceMade, questionTextForLog;
 
-    if (gameState.gamePhase === "species_creation") {
-        questionSet = speciesCreationQuestions;
-        choiceMade = questionSet[gameState.currentQuestionIndex].choices.find(c => c.id === choiceId);
-        questionTextForLog = questionSet[gameState.currentQuestionIndex].text;
-    } else if (gameState.gamePhase === "starship_creation") {
-        questionSet = starshipCreationQuestions;
-        choiceMade = questionSet[gameState.currentQuestionIndex].choices.find(c => c.id === choiceId);
-        questionTextForLog = questionSet[gameState.currentQuestionIndex].text;
-    } else if (gameState.gamePhase === "role_selection_initial") {
-        if (choiceId === "captain") gameState.playerRole = "Captain";
-        else if (choiceId === "civ_leader") gameState.playerRole = "Civilization Leader";
-        choiceMade = { text: `Chosen role: ${gameState.playerRole}`, effects: {} }; 
-        questionTextForLog = "Initial Role Selection";
-        gameState.gamePhase = "k_scale_progression";
-        gameState.subPhase = "event"; 
-        gameState.currentQuestionIndex = 0; 
-        gameState.eventCounter = 0; 
-        gameState.gameYear += 0; 
-    } else if (gameState.gamePhase === "k_scale_progression") {
-        const kEvents = kScaleEvents[gameState.currentKScale.toFixed(1)];
-        if (gameState.subPhase === "event" && kEvents && gameState.eventCounter < kEvents.length) {
-            choiceMade = kEvents[gameState.eventCounter].choices.find(c => c.id === choiceId);
-            questionTextForLog = kEvents[gameState.eventCounter].text_template;
-        } else if (gameState.subPhase === "role_change_decision") {
-            if (choiceId === "continue_role") { /* No change */ }
-            else if (choiceId === "change_to_captain") gameState.playerRole = "Captain";
-            else if (choiceId === "change_to_civ_leader") gameState.playerRole = "Civilization Leader";
-            choiceMade = { text: `Role decision: ${choiceId}, New Role: ${gameState.playerRole}`, effects: {} };
-            questionTextForLog = "K-Scale Milestone Role Decision";
+        if (gameState.gamePhase === "species_creation") {
+            questionSet = speciesCreationQuestions;
+            if (gameState.currentQuestionIndex >= questionSet.length) {
+                throw new Error("Invalid question index for species creation: " + gameState.currentQuestionIndex);
+            }
+            choiceMade = questionSet[gameState.currentQuestionIndex].choices.find(c => c.id === choiceId);
+            if (!choiceMade) {
+                throw new Error(`Choice ${choiceId} not found in species creation question ${gameState.currentQuestionIndex}`);
+            }
+            questionTextForLog = questionSet[gameState.currentQuestionIndex].text;
+        } else if (gameState.gamePhase === "starship_creation") {
+            questionSet = starshipCreationQuestions;
+            if (gameState.currentQuestionIndex >= questionSet.length) {
+                throw new Error("Invalid question index for starship creation: " + gameState.currentQuestionIndex);
+            }
+            choiceMade = questionSet[gameState.currentQuestionIndex].choices.find(c => c.id === choiceId);
+            if (!choiceMade) {
+                throw new Error(`Choice ${choiceId} not found in starship creation question ${gameState.currentQuestionIndex}`);
+            }
+            questionTextForLog = questionSet[gameState.currentQuestionIndex].text;
+        } else if (gameState.gamePhase === "role_selection_initial") {
+            if (choiceId === "captain") gameState.playerRole = "Captain";
+            else if (choiceId === "civ_leader") gameState.playerRole = "Civilization Leader";
+            else throw new Error("Invalid role selection choice: " + choiceId);
             
-            gameState.currentKScale = parseFloat((gameState.currentKScale + 0.2).toFixed(1));
-            gameState.gameYear += 20; 
-            if(gameOutput) gameOutput.innerHTML += `<br><b>Technological Leap! Your starship capabilities have been upgraded reflecting advancements over the last 20 years!</b><br>`;
-
-            gameState.subPhase = "event";
+            choiceMade = { text: `Chosen role: ${gameState.playerRole}`, effects: {} }; 
+            questionTextForLog = "Initial Role Selection";
+            gameState.gamePhase = "k_scale_progression";
+            gameState.subPhase = "event"; 
+            gameState.currentQuestionIndex = 0; 
             gameState.eventCounter = 0; 
+            gameState.gameYear += 0; 
+        } else if (gameState.gamePhase === "k_scale_progression") {
+            const kEvents = kScaleEvents[gameState.currentKScale.toFixed(1)];
+            if (!kEvents) {
+                throw new Error("No events found for K-Scale: " + gameState.currentKScale.toFixed(1));
+            }
             
-            // Check for game end *after* K-Scale update and *before* next displayCurrentState for this new K-Scale
-            if (gameState.currentKScale > gameState.maxKScale) {
-                endGame("K-Scale limit reached. Civilization journey complete!");
-                return; // Important to return here to prevent further processing
+            if (gameState.subPhase === "event" && kEvents && gameState.eventCounter < kEvents.length) {
+                choiceMade = kEvents[gameState.eventCounter].choices.find(c => c.id === choiceId);
+                if (!choiceMade) {
+                    throw new Error(`Choice ${choiceId} not found in K-Scale event ${gameState.eventCounter}`);
+                }
+                questionTextForLog = kEvents[gameState.eventCounter].text_template;
+            } else if (gameState.subPhase === "role_change_decision") {
+                if (choiceId === "continue_role") { /* No change */ }
+                else if (choiceId === "change_to_captain") gameState.playerRole = "Captain";
+                else if (choiceId === "change_to_civ_leader") gameState.playerRole = "Civilization Leader";
+                else throw new Error("Invalid role change choice: " + choiceId);
+                
+                choiceMade = { text: `Role decision: ${choiceId}, New Role: ${gameState.playerRole}`, effects: {} };
+                questionTextForLog = "K-Scale Milestone Role Decision";
+                
+                gameState.currentKScale = parseFloat((gameState.currentKScale + 0.2).toFixed(1));
+                gameState.gameYear += 20; 
+                if(gameOutput) gameOutput.innerHTML += `<br><b>Technological Leap! Your starship capabilities have been upgraded reflecting advancements over the last 20 years!</b><br>`;
+
+                gameState.subPhase = "event";
+                gameState.eventCounter = 0; 
+                
+                // Check for game end *after* K-Scale update and *before* next displayCurrentState for this new K-Scale
+                if (gameState.currentKScale > gameState.maxKScale) {
+                    endGame("K-Scale limit reached. Civilization journey complete!");
+                    return; // Important to return here to prevent further processing
+                }
             }
         }
-    }
 
-    if (choiceMade) {
-        gameState.choiceHistory.push({
-            year: gameState.gameYear,
-            kScale: gameState.currentKScale.toFixed(1),
-            phase: gameState.gamePhase,
-            subPhase: gameState.subPhase,
-            role: gameState.playerRole,
-            question: questionTextForLog ? questionTextForLog.replace('{starshipName}', gameState.starshipName).replace('{gameYear}', gameState.gameYear) : "N/A",
-            choiceText: choiceMade.text,
-            effects: JSON.parse(JSON.stringify(choiceMade.effects)), 
-            pathwaysBefore: JSON.parse(JSON.stringify(gameState.culturalPathways)) 
-        });
+        if (choiceMade) {
+            gameState.choiceHistory.push({
+                year: gameState.gameYear,
+                kScale: gameState.currentKScale.toFixed(1),
+                phase: gameState.gamePhase,
+                subPhase: gameState.subPhase,
+                role: gameState.playerRole,
+                question: questionTextForLog ? questionTextForLog.replace('{starshipName}', gameState.starshipName).replace('{gameYear}', gameState.gameYear) : "N/A",
+                choiceText: choiceMade.text,
+                effects: JSON.parse(JSON.stringify(choiceMade.effects)), 
+                pathwaysBefore: JSON.parse(JSON.stringify(gameState.culturalPathways)) 
+            });
 
-        for (const path in choiceMade.effects) {
-            if (gameState.culturalPathways.hasOwnProperty(path)) {
-                gameState.culturalPathways[path] += choiceMade.effects[path];
+            for (const path in choiceMade.effects) {
+                if (gameState.culturalPathways.hasOwnProperty(path)) {
+                    gameState.culturalPathways[path] += choiceMade.effects[path];
+                }
+            }
+            gameState.choiceHistory[gameState.choiceHistory.length-1].pathwaysAfter = JSON.parse(JSON.stringify(gameState.culturalPathways));
+
+            if (debugLog) debugLog.innerHTML += `DEBUG: Cultural Pathways Updated: ${JSON.stringify(gameState.culturalPathways)}<br>`;
+            if (gameOutput && choiceMade.text) gameOutput.innerHTML += `> ${choiceMade.text}<br>`;
+            if (gameOutput) gameOutput.scrollTop = gameOutput.scrollHeight;
+        }
+
+        if (gameState.gamePhase === "species_creation" || gameState.gamePhase === "starship_creation") {
+            gameState.currentQuestionIndex++;
+        } else if (gameState.gamePhase === "k_scale_progression" && gameState.subPhase === "event") {
+            gameState.eventCounter++; 
+            const currentKEvents = kScaleEvents[gameState.currentKScale.toFixed(1)];
+            if (!currentKEvents || gameState.eventCounter >= 6) { 
+                gameState.subPhase = "role_change_decision";
             }
         }
-        gameState.choiceHistory[gameState.choiceHistory.length-1].pathwaysAfter = JSON.parse(JSON.stringify(gameState.culturalPathways));
 
-        if (debugLog) debugLog.innerHTML += `DEBUG: Cultural Pathways Updated: ${JSON.stringify(gameState.culturalPathways)}<br>`;
-        if (gameOutput && choiceMade.text) gameOutput.innerHTML += `> ${choiceMade.text}<br>`;
-        if (gameOutput) gameOutput.scrollTop = gameOutput.scrollHeight;
-    }
-
-    if (gameState.gamePhase === "species_creation" || gameState.gamePhase === "starship_creation") {
-        gameState.currentQuestionIndex++;
-    } else if (gameState.gamePhase === "k_scale_progression" && gameState.subPhase === "event") {
-        gameState.eventCounter++; 
-        const currentKEvents = kScaleEvents[gameState.currentKScale.toFixed(1)];
-        if (!currentKEvents || gameState.eventCounter >= 6) { 
-            gameState.subPhase = "role_change_decision";
+        // Increment game year for each event in k_scale_progression
+        if (gameState.gamePhase === "k_scale_progression" && gameState.subPhase === "event") {
+            gameState.gameYear += 3; // Approximately 20 years over 6 events
         }
-    }
 
-    // Increment game year for each event in k_scale_progression
-    if (gameState.gamePhase === "k_scale_progression" && gameState.subPhase === "event") {
-        gameState.gameYear += 3; // Approximately 20 years over 6 events
-    }
+        // Save game state after successful choice handling
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.saveGameState(gameState);
+        }
 
-    displayCurrentState();
+        displayCurrentState();
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.GAME_STATE, { 
+                action: 'handleChoice',
+                choiceId: choiceId,
+                gamePhase: gameState.gamePhase,
+                subPhase: gameState.subPhase,
+                questionIndex: gameState.currentQuestionIndex,
+                eventCounter: gameState.eventCounter
+            });
+            window.HyperionErrorHandling.displayErrorToUser("Error processing your choice. Please try again or refresh the page.", null, true);
+        } else {
+            console.error("Error in handleChoice:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error processing your choice. Please try again or refresh the page.</span><br>";
+        }
+        return false;
+    }
 }
 
 function getTopCulturalPathways() {
-    const pathways = gameState.culturalPathways;
-    const sortedPaths = Object.entries(pathways).sort((a, b) => b[1] - a[1]);
-    return sortedPaths.slice(0, 2).map(entry => ({ name: entry[0], value: entry[1] }));
+    try {
+        const pathways = gameState.culturalPathways;
+        if (!pathways) {
+            throw new Error("Cultural pathways not found in game state");
+        }
+        
+        const sortedPaths = Object.entries(pathways).sort((a, b) => b[1] - a[1]);
+        return sortedPaths.slice(0, 2).map(entry => ({ name: entry[0], value: entry[1] }));
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.DATA, { action: 'getTopCulturalPathways' });
+            window.HyperionErrorHandling.displayErrorToUser("Error calculating cultural pathways.", null, false);
+        } else {
+            console.error("Error in getTopCulturalPathways:", error);
+        }
+        // Return default values in case of error
+        return [{ name: "science", value: 0 }, { name: "military", value: 0 }];
+    }
 }
 
 function showSpeciesCreationQuestion() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const debugLog = document.getElementById("debugLog");
-    
-    if (debugLog) debugLog.innerHTML += "DEBUG: showSpeciesCreationQuestion called. Current index: " + gameState.currentQuestionIndex + "<br>";
-    
-    if(storyArea) storyArea.innerHTML = ""; 
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const debugLog = document.getElementById("debugLog");
+        
+        if (debugLog) debugLog.innerHTML += "DEBUG: showSpeciesCreationQuestion called. Current index: " + gameState.currentQuestionIndex + "<br>";
+        
+        if(storyArea) storyArea.innerHTML = ""; 
 
-    // Safety check to prevent infinite recursion
-    if (gameState.currentQuestionIndex >= speciesCreationQuestions.length) {
-        if (debugLog) debugLog.innerHTML += "DEBUG: Index exceeds questions length, showing summary.<br>";
-        showSpeciesSummary();
-        return; // Important to return here to prevent further processing
+        // Safety check to prevent infinite recursion
+        if (gameState.currentQuestionIndex >= speciesCreationQuestions.length) {
+            if (debugLog) debugLog.innerHTML += "DEBUG: Index exceeds questions length, showing summary.<br>";
+            showSpeciesSummary();
+            return; // Important to return here to prevent further processing
+        }
+
+        const currentQuestion = speciesCreationQuestions[gameState.currentQuestionIndex];
+        if (!currentQuestion) {
+            throw new Error("Question not found at index: " + gameState.currentQuestionIndex);
+        }
+        
+        if(questionArea) questionArea.textContent = currentQuestion.text;
+        if(choicesArea) choicesArea.innerHTML = '';
+        
+        currentQuestion.choices.forEach(choice => {
+            const button = document.createElement('button');
+            button.textContent = choice.text;
+            button.onclick = () => handleChoice(choice.id);
+            if(choicesArea) choicesArea.appendChild(button);
+        });
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
+                action: 'showSpeciesCreationQuestion',
+                questionIndex: gameState.currentQuestionIndex
+            });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying species creation question.", null, true);
+        } else {
+            console.error("Error in showSpeciesCreationQuestion:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying species creation question.</span><br>";
+        }
+        return false;
     }
-
-    const currentQuestion = speciesCreationQuestions[gameState.currentQuestionIndex];
-    if(questionArea) questionArea.textContent = currentQuestion.text;
-    if(choicesArea) choicesArea.innerHTML = '';
-    
-    currentQuestion.choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.textContent = choice.text;
-        button.onclick = () => handleChoice(choice.id);
-        if(choicesArea) choicesArea.appendChild(button);
-    });
 }
 
 function showSpeciesSummary() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const gameOutput = document.getElementById("game-output");
-    const debugLog = document.getElementById("debugLog");
-    
-    if (debugLog) debugLog.innerHTML += "DEBUG: showSpeciesSummary called.<br>";
-    
-    gameState.gamePhase = "species_summary";
-    
-    const topPathways = getTopCulturalPathways();
-    const pathwayNames = {
-        science: "Scientific",
-        military: "Military",
-        ecological: "Ecological",
-        subversive: "Subversive",
-        psychic: "Psychic"
-    };
-    
-    if(questionArea) questionArea.textContent = "Your species has been defined. These are your dominant cultural pathways:";
-    if(storyArea) storyArea.innerHTML = `<b>${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}</b>: ${topPathways[0].value} points<br><b>${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}</b>: ${topPathways[1].value} points`;
-    
-    if(gameOutput) gameOutput.innerHTML += `<br>Species creation complete. Dominant pathways: ${pathwayNames[topPathways[0].name]} (${topPathways[0].value}) and ${pathwayNames[topPathways[1].name]} (${topPathways[1].value}).<br>`;
-    
-    if(choicesArea) choicesArea.innerHTML = '';
-    
-    const proceedButton = document.createElement('button');
-    proceedButton.textContent = "Proceed to Starship Design";
-    proceedButton.onclick = () => {
-        gameState.gamePhase = "starship_creation";
-        gameState.currentQuestionIndex = 0;
-        displayCurrentState();
-    };
-    if(choicesArea) choicesArea.appendChild(proceedButton);
-}
-
-function showStarshipCreationQuestion() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const debugLog = document.getElementById("debugLog");
-    
-    if (debugLog) debugLog.innerHTML += "DEBUG: showStarshipCreationQuestion called. Current index: " + gameState.currentQuestionIndex + "<br>";
-    
-    if(storyArea) storyArea.innerHTML = ""; 
-
-    // Safety check to prevent infinite recursion
-    if (gameState.currentQuestionIndex >= starshipCreationQuestions.length) {
-        if (debugLog) debugLog.innerHTML += "DEBUG: Index exceeds starship questions length, showing summary.<br>";
-        showStarshipSummary();
-        return; // Important to return here to prevent further processing
-    }
-
-    const currentQuestion = starshipCreationQuestions[gameState.currentQuestionIndex];
-    if(questionArea) questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
-    if(choicesArea) choicesArea.innerHTML = '';
-    
-    currentQuestion.choices.forEach(choice => {
-        const button = document.createElement('button');
-        button.textContent = choice.text;
-        button.onclick = () => handleChoice(choice.id);
-        if(choicesArea) choicesArea.appendChild(button);
-    });
-}
-
-function showStarshipSummary() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const gameOutput = document.getElementById("game-output");
-    const debugLog = document.getElementById("debugLog");
-    
-    if (debugLog) debugLog.innerHTML += "DEBUG: showStarshipSummary called.<br>";
-    
-    gameState.gamePhase = "starship_summary";
-    
-    const topPathways = getTopCulturalPathways();
-    const pathwayNames = {
-        science: "Scientific",
-        military: "Military",
-        ecological: "Ecological",
-        subversive: "Subversive",
-        psychic: "Psychic"
-    };
-    
-    if(questionArea) questionArea.textContent = `The ${gameState.starshipName} is ready for its maiden voyage. These are your current cultural pathways:`;
-    if(storyArea) storyArea.innerHTML = `<b>${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}</b>: ${topPathways[0].value} points<br><b>${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}</b>: ${topPathways[1].value} points`;
-    
-    if(gameOutput) gameOutput.innerHTML += `<br>Starship design complete. The ${gameState.starshipName} reflects your cultural values: ${pathwayNames[topPathways[0].name]} (${topPathways[0].value}) and ${pathwayNames[topPathways[1].name]} (${topPathways[1].value}).<br>`;
-    
-    if(choicesArea) choicesArea.innerHTML = '';
-    
-    const proceedButton = document.createElement('button');
-    proceedButton.textContent = "Choose Your Role";
-    proceedButton.onclick = () => {
-        gameState.gamePhase = "role_selection_initial";
-        displayCurrentState();
-    };
-    if(choicesArea) choicesArea.appendChild(proceedButton);
-}
-
-function showRoleSelectionInitial() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    if(storyArea) storyArea.innerHTML = ""; 
-
-    if(questionArea) questionArea.textContent = `The journey ahead requires a leader. Will you command the ${gameState.starshipName} as its Captain, focusing on exploration and defense, or will you guide your civilization's destiny as its Civilization Leader, focusing on development and diplomacy?`;
-    if(choicesArea) choicesArea.innerHTML = '';
-    
-    const captainButton = document.createElement('button');
-    captainButton.classList.add("role-selection");
-    captainButton.textContent = "Choose: Captain";
-    captainButton.onclick = () => handleChoice("captain");
-    if(choicesArea) choicesArea.appendChild(captainButton);
-
-    const leaderButton = document.createElement('button');
-    leaderButton.classList.add("role-selection");
-    leaderButton.textContent = "Choose: Civilization Leader";
-    leaderButton.onclick = () => handleChoice("civ_leader");
-    if(choicesArea) choicesArea.appendChild(leaderButton);
-}
-
-function showKScaleEvent() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    if(storyArea) storyArea.innerHTML = ""; 
-
-    const currentKValue = gameState.currentKScale.toFixed(1);
-    const eventsForKScale = kScaleEvents[currentKValue];
-
-    if (eventsForKScale && gameState.eventCounter < eventsForKScale.length && gameState.eventCounter < 6) {
-        const event = eventsForKScale[gameState.eventCounter];
-        if(questionArea) questionArea.textContent = event.text_template.replace('{gameYear}', gameState.gameYear).replace('{starshipName}', gameState.starshipName);
-        if(choicesArea) choicesArea.innerHTML = '';
-        event.choices.forEach(choice => {
-            if (!choice.role_affinity || choice.role_affinity === gameState.playerRole) {
-                const button = document.createElement('button');
-                button.textContent = choice.text;
-                button.onclick = () => handleChoice(choice.id);
-                if(choicesArea) choicesArea.appendChild(button);
-            }
-        });
-    } else {
-        gameState.subPhase = "role_change_decision";
-        displayCurrentState();
-    }
-}
-
-function showRoleChangeDecision() {
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const gameOutput = document.getElementById("game-output");
-
-    if(storyArea) storyArea.innerHTML = `Your civilization has advanced. Your starship, the ${gameState.starshipName}, has undergone significant upgrades reflecting the technological leaps of the past 20 years.`;
-    // The ship upgrade message is now primarily in handleChoice when K-Scale advances.
-    // This is a secondary place for it if needed.
-    // if(gameOutput && !gameOutput.innerHTML.includes("Technological Leap!")) { 
-    //     gameOutput.innerHTML += `<br><b>Technological Leap! Your starship capabilities have been upgraded reflecting advancements over the last 20 years!</b><br>`;
-    //     gameOutput.scrollTop = gameOutput.scrollHeight;
-    // }
-
-    if(questionArea) questionArea.textContent = `Year ${gameState.gameYear}, K-Scale ${gameState.currentKScale.toFixed(1)}: You've reached a significant milestone. Do you wish to continue in your current role as ${gameState.playerRole}, or is it time to take on the mantle of ${gameState.playerRole === "Captain" ? "Civilization Leader" : "Captain"}?`;
-    if(choicesArea) choicesArea.innerHTML = '';
-
-    const continueButton = document.createElement('button');
-    continueButton.classList.add("role-selection");
-    continueButton.textContent = `Continue as ${gameState.playerRole}`;
-    continueButton.onclick = () => handleChoice("continue_role");
-    if(choicesArea) choicesArea.appendChild(continueButton);
-
-    const changeRoleButton = document.createElement('button');
-    changeRoleButton.classList.add("role-selection");
-    const otherRole = gameState.playerRole === "Captain" ? "Civilization Leader" : "Captain";
-    changeRoleButton.textContent = `Change role to ${otherRole}`;
-    changeRoleButton.onclick = () => handleChoice(gameState.playerRole === "Captain" ? "change_to_civ_leader" : "change_to_captain");
-    if(choicesArea) choicesArea.appendChild(changeRoleButton);
-}
-
-function endGame(reason) {
-    gameState.gamePhase = "game_end";
-    const questionArea = document.getElementById("question-area");
-    const choicesArea = document.getElementById("choices-area");
-    const storyArea = document.getElementById("storyArea");
-    const resultsArea = document.getElementById("results-area");
-    const pathwayScoresDiv = document.getElementById("pathway-scores");
-    // const pathwayPercentagesDiv = document.getElementById("pathway-percentages"); // This element was removed from HTML as it's combined with scores
-    const choiceHistoryLog = document.getElementById("choice-history-log");
-    const downloadLogButton = document.getElementById("download-log-button");
-    const gameOutput = document.getElementById("game-output");
-
-    const topPathways = getTopCulturalPathways();
-
-    if(questionArea) questionArea.innerHTML = "Game Over";
-    if(choicesArea) choicesArea.innerHTML = ''; 
-    if(storyArea) storyArea.innerHTML = `<b>Reason: ${reason}</b><br><br>Your civilization has reached K-Scale ${gameState.currentKScale.toFixed(1)} after ${gameState.gameYear} years of development.<br><br>Dominant cultural pathways:<br>- ${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}: ${topPathways[0].value} points<br>- ${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}: ${topPathways[1].value} points`;
-    
-    if(gameOutput) gameOutput.innerHTML += `<br><b>Game Over: ${reason}</b><br>`;
-    
-    if(resultsArea) resultsArea.style.display = 'block';
-    
-    if(pathwayScoresDiv) {
-        pathwayScoresDiv.innerHTML = '';
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const gameOutput = document.getElementById("game-output");
+        const debugLog = document.getElementById("debugLog");
+        
+        if (debugLog) debugLog.innerHTML += "DEBUG: showSpeciesSummary called.<br>";
+        
+        gameState.gamePhase = "species_summary";
+        
+        const topPathways = getTopCulturalPathways();
         const pathwayNames = {
             science: "Scientific",
             military: "Military",
@@ -626,146 +596,514 @@ function endGame(reason) {
             psychic: "Psychic"
         };
         
-        const totalPoints = Object.values(gameState.culturalPathways).reduce((sum, val) => sum + Math.max(0, val), 0);
+        if(questionArea) questionArea.textContent = "Your species has been defined. These are your dominant cultural pathways:";
+        if(storyArea) storyArea.innerHTML = `<b>${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}</b>: ${topPathways[0].value} points<br><b>${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}</b>: ${topPathways[1].value} points`;
         
-        for (const [pathway, score] of Object.entries(gameState.culturalPathways)) {
-            const pathwayDiv = document.createElement('div');
-            pathwayDiv.className = 'pathway-result';
-            
-            const pathwayNameSpan = document.createElement('span');
-            pathwayNameSpan.className = 'pathway-name';
-            pathwayNameSpan.textContent = pathwayNames[pathway] || pathway.charAt(0).toUpperCase() + pathway.slice(1);
-            
-            const barContainer = document.createElement('div');
-            barContainer.className = 'pathway-bar-container';
-            
-            const bar = document.createElement('div');
-            bar.className = 'pathway-bar';
-            
-            // Calculate percentage (minimum 5% for visibility if any points)
-            const percentage = totalPoints > 0 ? Math.max(5, (score / totalPoints) * 100) : 0;
-            bar.style.width = `${percentage}%`;
-            
-            // Set color based on pathway
-            switch(pathway) {
-                case 'science': bar.style.backgroundColor = '#4a90e2'; break; // Blue
-                case 'military': bar.style.backgroundColor = '#e74c3c'; break; // Red
-                case 'ecological': bar.style.backgroundColor = '#2ecc71'; break; // Green
-                case 'subversive': bar.style.backgroundColor = '#34495e'; break; // Dark Blue/Gray
-                case 'psychic': bar.style.backgroundColor = '#9b59b6'; break; // Purple
+        if(gameOutput) gameOutput.innerHTML += `<br>Species creation complete. Dominant pathways: ${pathwayNames[topPathways[0].name]} (${topPathways[0].value}) and ${pathwayNames[topPathways[1].name]} (${topPathways[1].value}).<br>`;
+        
+        if(choicesArea) choicesArea.innerHTML = '';
+        
+        const proceedButton = document.createElement('button');
+        proceedButton.textContent = "Proceed to Starship Design";
+        proceedButton.onclick = () => {
+            gameState.gamePhase = "starship_creation";
+            gameState.currentQuestionIndex = 0;
+            displayCurrentState();
+        };
+        if(choicesArea) choicesArea.appendChild(proceedButton);
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showSpeciesSummary' });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying species summary.", null, true);
+        } else {
+            console.error("Error in showSpeciesSummary:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying species summary.</span><br>";
+        }
+        return false;
+    }
+}
+
+function showStarshipCreationQuestion() {
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const debugLog = document.getElementById("debugLog");
+        
+        if (debugLog) debugLog.innerHTML += "DEBUG: showStarshipCreationQuestion called. Current index: " + gameState.currentQuestionIndex + "<br>";
+        
+        if(storyArea) storyArea.innerHTML = ""; 
+
+        // Safety check to prevent infinite recursion
+        if (gameState.currentQuestionIndex >= starshipCreationQuestions.length) {
+            if (debugLog) debugLog.innerHTML += "DEBUG: Index exceeds starship questions length, showing summary.<br>";
+            showStarshipSummary();
+            return; // Important to return here to prevent further processing
+        }
+
+        const currentQuestion = starshipCreationQuestions[gameState.currentQuestionIndex];
+        if (!currentQuestion) {
+            throw new Error("Starship question not found at index: " + gameState.currentQuestionIndex);
+        }
+        
+        if(questionArea) questionArea.textContent = currentQuestion.text.replace('{starshipName}', gameState.starshipName);
+        if(choicesArea) choicesArea.innerHTML = '';
+        
+        currentQuestion.choices.forEach(choice => {
+            const button = document.createElement('button');
+            button.textContent = choice.text;
+            button.onclick = () => handleChoice(choice.id);
+            if(choicesArea) choicesArea.appendChild(button);
+        });
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
+                action: 'showStarshipCreationQuestion',
+                questionIndex: gameState.currentQuestionIndex
+            });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying starship creation question.", null, true);
+        } else {
+            console.error("Error in showStarshipCreationQuestion:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying starship creation question.</span><br>";
+        }
+        return false;
+    }
+}
+
+function showStarshipSummary() {
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const gameOutput = document.getElementById("game-output");
+        const debugLog = document.getElementById("debugLog");
+        
+        if (debugLog) debugLog.innerHTML += "DEBUG: showStarshipSummary called.<br>";
+        
+        gameState.gamePhase = "starship_summary";
+        
+        const topPathways = getTopCulturalPathways();
+        const pathwayNames = {
+            science: "Scientific",
+            military: "Military",
+            ecological: "Ecological",
+            subversive: "Subversive",
+            psychic: "Psychic"
+        };
+        
+        if(questionArea) questionArea.textContent = `The ${gameState.starshipName} is ready for its maiden voyage. These are your current cultural pathways:`;
+        if(storyArea) storyArea.innerHTML = `<b>${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}</b>: ${topPathways[0].value} points<br><b>${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}</b>: ${topPathways[1].value} points`;
+        
+        if(gameOutput) gameOutput.innerHTML += `<br>Starship design complete. The ${gameState.starshipName} reflects your cultural values: ${pathwayNames[topPathways[0].name]} (${topPathways[0].value}) and ${pathwayNames[topPathways[1].name]} (${topPathways[1].value}).<br>`;
+        
+        if(choicesArea) choicesArea.innerHTML = '';
+        
+        const proceedButton = document.createElement('button');
+        proceedButton.textContent = "Choose Your Role";
+        proceedButton.onclick = () => {
+            gameState.gamePhase = "role_selection_initial";
+            displayCurrentState();
+        };
+        if(choicesArea) choicesArea.appendChild(proceedButton);
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showStarshipSummary' });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying starship summary.", null, true);
+        } else {
+            console.error("Error in showStarshipSummary:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying starship summary.</span><br>";
+        }
+        return false;
+    }
+}
+
+function showRoleSelectionInitial() {
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        if(storyArea) storyArea.innerHTML = ""; 
+
+        if(questionArea) questionArea.textContent = `The journey ahead requires a leader. Will you command the ${gameState.starshipName} as its Captain, focusing on exploration and defense, or will you guide your civilization's destiny as its Civilization Leader, focusing on development and diplomacy?`;
+        if(choicesArea) choicesArea.innerHTML = '';
+        
+        const captainButton = document.createElement('button');
+        captainButton.classList.add("role-selection");
+        captainButton.textContent = "Choose: Captain";
+        captainButton.onclick = () => handleChoice("captain");
+        if(choicesArea) choicesArea.appendChild(captainButton);
+
+        const leaderButton = document.createElement('button');
+        leaderButton.classList.add("role-selection");
+        leaderButton.textContent = "Choose: Civilization Leader";
+        leaderButton.onclick = () => handleChoice("civ_leader");
+        if(choicesArea) choicesArea.appendChild(leaderButton);
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showRoleSelectionInitial' });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying role selection.", null, true);
+        } else {
+            console.error("Error in showRoleSelectionInitial:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying role selection.</span><br>";
+        }
+        return false;
+    }
+}
+
+function showKScaleEvent() {
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        if(storyArea) storyArea.innerHTML = ""; 
+
+        const currentKValue = gameState.currentKScale.toFixed(1);
+        const eventsForKScale = kScaleEvents[currentKValue];
+
+        if (!eventsForKScale) {
+            throw new Error("No events found for K-Scale: " + currentKValue);
+        }
+
+        if (eventsForKScale && gameState.eventCounter < eventsForKScale.length && gameState.eventCounter < 6) {
+            const event = eventsForKScale[gameState.eventCounter];
+            if (!event) {
+                throw new Error(`Event not found at index ${gameState.eventCounter} for K-Scale ${currentKValue}`);
             }
             
-            bar.textContent = `${score} (${Math.round(percentage)}%)`;
+            if(questionArea) questionArea.textContent = event.text_template.replace('{gameYear}', gameState.gameYear).replace('{starshipName}', gameState.starshipName);
+            if(choicesArea) choicesArea.innerHTML = '';
             
-            barContainer.appendChild(bar);
-            pathwayDiv.appendChild(pathwayNameSpan);
-            pathwayDiv.appendChild(barContainer);
-            pathwayScoresDiv.appendChild(pathwayDiv);
+            event.choices.forEach(choice => {
+                if (!choice.role_affinity || choice.role_affinity === gameState.playerRole) {
+                    const button = document.createElement('button');
+                    button.textContent = choice.text;
+                    button.onclick = () => handleChoice(choice.id);
+                    if(choicesArea) choicesArea.appendChild(button);
+                }
+            });
+        } else {
+            gameState.subPhase = "role_change_decision";
+            displayCurrentState();
         }
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
+                action: 'showKScaleEvent',
+                kScale: gameState.currentKScale.toFixed(1),
+                eventCounter: gameState.eventCounter
+            });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying K-Scale event.", null, true);
+        } else {
+            console.error("Error in showKScaleEvent:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying K-Scale event.</span><br>";
+        }
+        return false;
     }
-    
-    if(choiceHistoryLog) {
-        choiceHistoryLog.innerHTML = '';
-        gameState.choiceHistory.forEach((entry, index) => {
-            choiceHistoryLog.innerHTML += `Year ${entry.year} (K-Scale ${entry.kScale}): ${entry.choiceText}<br>`;
-        });
+}
+
+function showRoleChangeDecision() {
+    try {
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const gameOutput = document.getElementById("game-output");
+
+        if(storyArea) storyArea.innerHTML = `Your civilization has advanced. Your starship, the ${gameState.starshipName}, has undergone significant upgrades reflecting the technological leaps of the past 20 years.`;
+        // The ship upgrade message is now primarily in handleChoice when K-Scale advances.
+        // This is a secondary place for it if needed.
+        // if(gameOutput && !gameOutput.innerHTML.includes("Technological Leap!")) { 
+        //     gameOutput.innerHTML += `<br><b>Technological Leap! Your starship capabilities have been upgraded reflecting advancements over the last 20 years!</b><br>`;
+        //     gameOutput.scrollTop = gameOutput.scrollHeight;
+        // }
+
+        if(questionArea) questionArea.textContent = `Year ${gameState.gameYear}, K-Scale ${gameState.currentKScale.toFixed(1)}: You've reached a significant milestone. Do you wish to continue in your current role as ${gameState.playerRole}, or is it time to take on the mantle of ${gameState.playerRole === "Captain" ? "Civilization Leader" : "Captain"}?`;
+        if(choicesArea) choicesArea.innerHTML = '';
+
+        const continueButton = document.createElement('button');
+        continueButton.classList.add("role-selection");
+        continueButton.textContent = `Continue as ${gameState.playerRole}`;
+        continueButton.onclick = () => handleChoice("continue_role");
+        if(choicesArea) choicesArea.appendChild(continueButton);
+
+        const changeRoleButton = document.createElement('button');
+        changeRoleButton.classList.add("role-selection");
+        const otherRole = gameState.playerRole === "Captain" ? "Civilization Leader" : "Captain";
+        changeRoleButton.textContent = `Change role to ${otherRole}`;
+        changeRoleButton.onclick = () => handleChoice(gameState.playerRole === "Captain" ? "change_to_civ_leader" : "change_to_captain");
+        if(choicesArea) choicesArea.appendChild(changeRoleButton);
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showRoleChangeDecision' });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying role change decision.", null, true);
+        } else {
+            console.error("Error in showRoleChangeDecision:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying role change decision.</span><br>";
+        }
+        return false;
     }
-    
-    if(downloadLogButton) {
-        downloadLogButton.style.display = 'inline-block';
+}
+
+function endGame(reason) {
+    try {
+        gameState.gamePhase = "game_end";
+        const questionArea = document.getElementById("question-area");
+        const choicesArea = document.getElementById("choices-area");
+        const storyArea = document.getElementById("storyArea");
+        const resultsArea = document.getElementById("results-area");
+        const pathwayScoresDiv = document.getElementById("pathway-scores");
+        const choiceHistoryLog = document.getElementById("choice-history-log");
+        const downloadLogButton = document.getElementById("download-log-button");
+        const gameOutput = document.getElementById("game-output");
+
+        if (!questionArea || !choicesArea || !storyArea || !resultsArea || !pathwayScoresDiv || !choiceHistoryLog || !downloadLogButton) {
+            throw new Error("One or more UI elements missing for end game display");
+        }
+
+        const topPathways = getTopCulturalPathways();
+
+        if(questionArea) questionArea.innerHTML = "Game Over";
+        if(choicesArea) choicesArea.innerHTML = ''; 
+        if(storyArea) storyArea.innerHTML = `<b>Reason: ${reason}</b><br><br>Your civilization has reached K-Scale ${gameState.currentKScale.toFixed(1)} after ${gameState.gameYear} years of development.<br><br>Dominant cultural pathways:<br>- ${topPathways[0].name.charAt(0).toUpperCase() + topPathways[0].name.slice(1)}: ${topPathways[0].value} points<br>- ${topPathways[1].name.charAt(0).toUpperCase() + topPathways[1].name.slice(1)}: ${topPathways[1].value} points`;
+        
+        if(gameOutput) gameOutput.innerHTML += `<br><b>Game Over: ${reason}</b><br>`;
+        
+        if(resultsArea) resultsArea.style.display = 'block';
+        
+        if(pathwayScoresDiv) {
+            pathwayScoresDiv.innerHTML = '';
+            const pathwayNames = {
+                science: "Scientific",
+                military: "Military",
+                ecological: "Ecological",
+                subversive: "Subversive",
+                psychic: "Psychic"
+            };
+            
+            const totalPoints = Object.values(gameState.culturalPathways).reduce((sum, val) => sum + Math.max(0, val), 0);
+            
+            for (const [pathway, score] of Object.entries(gameState.culturalPathways)) {
+                const pathwayDiv = document.createElement('div');
+                pathwayDiv.className = 'pathway-result';
+                
+                const pathwayNameSpan = document.createElement('span');
+                pathwayNameSpan.className = 'pathway-name';
+                pathwayNameSpan.textContent = pathwayNames[pathway] || pathway.charAt(0).toUpperCase() + pathway.slice(1);
+                
+                const barContainer = document.createElement('div');
+                barContainer.className = 'pathway-bar-container';
+                
+                const bar = document.createElement('div');
+                bar.className = 'pathway-bar';
+                
+                // Calculate percentage (minimum 5% for visibility if any points)
+                const percentage = totalPoints > 0 ? Math.max(5, (score / totalPoints) * 100) : 0;
+                bar.style.width = `${percentage}%`;
+                
+                // Set color based on pathway
+                switch(pathway) {
+                    case 'science': bar.style.backgroundColor = '#4a90e2'; break; // Blue
+                    case 'military': bar.style.backgroundColor = '#e74c3c'; break; // Red
+                    case 'ecological': bar.style.backgroundColor = '#2ecc71'; break; // Green
+                    case 'subversive': bar.style.backgroundColor = '#34495e'; break; // Dark Blue/Gray
+                    case 'psychic': bar.style.backgroundColor = '#9b59b6'; break; // Purple
+                }
+                
+                bar.textContent = `${score} (${Math.round(percentage)}%)`;
+                
+                barContainer.appendChild(bar);
+                pathwayDiv.appendChild(pathwayNameSpan);
+                pathwayDiv.appendChild(barContainer);
+                pathwayScoresDiv.appendChild(pathwayDiv);
+            }
+        }
+        
+        if(choiceHistoryLog) {
+            choiceHistoryLog.innerHTML = '';
+            gameState.choiceHistory.forEach((entry, index) => {
+                choiceHistoryLog.innerHTML += `Year ${entry.year} (K-Scale ${entry.kScale}): ${entry.choiceText}<br>`;
+            });
+        }
+        
+        if(downloadLogButton) {
+            downloadLogButton.style.display = 'inline-block';
+        }
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
+                action: 'endGame',
+                reason: reason
+            });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying game end screen.", null, true);
+        } else {
+            console.error("Error in endGame:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying game end screen.</span><br>";
+        }
+        return false;
     }
 }
 
 function downloadChoiceHistoryCSV() {
-    if (gameState.choiceHistory.length === 0) {
-        const gameOutput = document.getElementById("game-output");
-        if(gameOutput) gameOutput.innerHTML += "<br><span style='color:orange;'>No history to download.</span>";
-        return;
-    }
+    try {
+        if (gameState.choiceHistory.length === 0) {
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<br><span style='color:orange;'>No history to download.</span>";
+            return false;
+        }
 
-    let csvContent = "data:text/csv;charset=utf-8,";
-    const headers = ["Year", "KScale", "GamePhase", "SubPhase", "PlayerRole", "Question/Event", "ChoiceMade", "Effect_Science", "Effect_Military", "Effect_Ecological", "Effect_Subversive", "Effect_Psychic", "Path_Sci_Before", "Path_Mil_Before", "Path_Eco_Before", "Path_Sub_Before", "Path_Psy_Before", "Path_Sci_After", "Path_Mil_After", "Path_Eco_After", "Path_Sub_After", "Path_Psy_After"];
-    csvContent += headers.join(",") + "\r\n";
+        let csvContent = "data:text/csv;charset=utf-8,";
+        const headers = ["Year", "KScale", "GamePhase", "SubPhase", "PlayerRole", "Question/Event", "ChoiceMade", "Effect_Science", "Effect_Military", "Effect_Ecological", "Effect_Subversive", "Effect_Psychic", "Path_Sci_Before", "Path_Mil_Before", "Path_Eco_Before", "Path_Sub_Before", "Path_Psy_Before", "Path_Sci_After", "Path_Mil_After", "Path_Eco_After", "Path_Sub_After", "Path_Psy_After"];
+        csvContent += headers.join(",") + "\r\n";
 
-    gameState.choiceHistory.forEach(entry => {
-        const effects = entry.effects || {};
-        const pathwaysBefore = entry.pathwaysBefore || {};
-        const pathwaysAfter = entry.pathwaysAfter || {};
+        gameState.choiceHistory.forEach(entry => {
+            const effects = entry.effects || {};
+            const pathwaysBefore = entry.pathwaysBefore || {};
+            const pathwaysAfter = entry.pathwaysAfter || {};
+            
+            const row = [
+                entry.year,
+                entry.kScale,
+                entry.phase,
+                entry.subPhase || "N/A",
+                entry.role || "N/A",
+                `"${(entry.question || "N/A").replace(/"/g, "\"\"")}"`,
+                `"${(entry.choiceText || "N/A").replace(/"/g, "\"\"")}"`,
+                effects.science || 0,
+                effects.military || 0,
+                effects.ecological || 0,
+                effects.subversive || 0,
+                effects.psychic || 0,
+                pathwaysBefore.science || 0,
+                pathwaysBefore.military || 0,
+                pathwaysBefore.ecological || 0,
+                pathwaysBefore.subversive || 0,
+                pathwaysBefore.psychic || 0,
+                pathwaysAfter.science || 0,
+                pathwaysAfter.military || 0,
+                pathwaysAfter.ecological || 0,
+                pathwaysAfter.subversive || 0,
+                pathwaysAfter.psychic || 0
+            ];
+            csvContent += row.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "hyperion_nexus_game_log.csv");
+        document.body.appendChild(link); 
+        link.click();
+        document.body.removeChild(link);
         
-        const row = [
-            entry.year,
-            entry.kScale,
-            entry.phase,
-            entry.subPhase || "N/A",
-            entry.role || "N/A",
-            `"${(entry.question || "N/A").replace(/"/g, "\"\"")}"`,
-            `"${(entry.choiceText || "N/A").replace(/"/g, "\"\"")}"`,
-            effects.science || 0,
-            effects.military || 0,
-            effects.ecological || 0,
-            effects.subversive || 0,
-            effects.psychic || 0,
-            pathwaysBefore.science || 0,
-            pathwaysBefore.military || 0,
-            pathwaysBefore.ecological || 0,
-            pathwaysBefore.subversive || 0,
-            pathwaysBefore.psychic || 0,
-            pathwaysAfter.science || 0,
-            pathwaysAfter.military || 0,
-            pathwaysAfter.ecological || 0,
-            pathwaysAfter.subversive || 0,
-            pathwaysAfter.psychic || 0
-        ];
-        csvContent += row.join(",") + "\r\n";
-    });
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "hyperion_nexus_game_log.csv");
-    document.body.appendChild(link); 
-    link.click();
-    document.body.removeChild(link);
-    if(gameOutput) gameOutput.innerHTML += "<br>Game log download initiated.";
+        const gameOutput = document.getElementById("game-output");
+        if(gameOutput) gameOutput.innerHTML += "<br>Game log download initiated.";
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.DATA, { action: 'downloadChoiceHistoryCSV' });
+            window.HyperionErrorHandling.displayErrorToUser("Error downloading game history.", null, false);
+        } else {
+            console.error("Error in downloadChoiceHistoryCSV:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error downloading game history.</span><br>";
+        }
+        return false;
+    }
 }
 window.downloadChoiceHistoryCSV = downloadChoiceHistoryCSV; 
 
 function initializeGame() {
-    const gameOutput = document.getElementById("game-output");
-    const storyArea = document.getElementById("storyArea");
-    const debugLog = document.getElementById("debugLog");
-    const resultsArea = document.getElementById("results-area");
-    const startButton = document.getElementById("start-button");
-    const restartButton = document.getElementById("restart-button");
-    const downloadLogButton = document.getElementById("download-log-button");
+    try {
+        const gameOutput = document.getElementById("game-output");
+        const storyArea = document.getElementById("storyArea");
+        const debugLog = document.getElementById("debugLog");
+        const resultsArea = document.getElementById("results-area");
+        const startButton = document.getElementById("start-button");
+        const restartButton = document.getElementById("restart-button");
+        const downloadLogButton = document.getElementById("download-log-button");
 
-    if (debugLog) debugLog.innerHTML = "DEBUG: initializeGame called.<br>";
+        if (!gameOutput || !storyArea || !resultsArea || !startButton || !restartButton || !downloadLogButton) {
+            throw new Error("One or more UI elements missing for game initialization");
+        }
 
-    gameState.gamePhase = "species_creation";
-    gameState.currentQuestionIndex = 0;
-    gameState.eventCounter = 0;
-    gameState.culturalPathways = { science: 0, military: 0, ecological: 0, subversive: 0, psychic: 0 };
-    gameState.playerRole = null;
-    gameState.gameYear = 0;
-    gameState.currentKScale = 0.9;
-    gameState.choiceHistory = [];
-    gameState.subPhase = null;
+        if (debugLog) debugLog.innerHTML = "DEBUG: initializeGame called.<br>";
 
-    clearGameUI(); 
-    if(gameOutput) gameOutput.innerHTML = "Welcome! Let's begin creating your species.<br>";
-    if(storyArea) storyArea.innerHTML = "The journey of a thousand stars begins with a single choice.";
-    
-    if (startButton) startButton.style.display = 'none';
-    if (restartButton) restartButton.style.display = 'inline-block';
-    if (downloadLogButton) downloadLogButton.style.display = 'none';
-    if (resultsArea) resultsArea.style.display = 'none';
-    if (debugLog) debugLog.style.display = 'block'; 
+        // Check for saved game state
+        let loadedState = null;
+        if (window.HyperionErrorHandling && window.HyperionErrorHandling.canRecoverGameState()) {
+            loadedState = window.HyperionErrorHandling.loadGameState();
+            if (loadedState) {
+                const confirmRestore = confirm("A saved game was found. Would you like to continue from where you left off?");
+                if (confirmRestore) {
+                    gameState = loadedState;
+                    if(gameOutput) gameOutput.innerHTML += "<br><span style='color:green;'>Game state restored successfully.</span><br>";
+                    displayCurrentState();
+                    return true;
+                }
+            }
+        }
 
-    if (debugLog) debugLog.innerHTML += "DEBUG: Game state reset. Starting species creation.<br>";
-    
-    displayCurrentState();
-    updateStatusBar();
-    if (debugLog) debugLog.innerHTML += "DEBUG: Game initialization complete. First question should be visible.<br>";
+        // Initialize new game if no saved state or user declined to restore
+        gameState.gamePhase = "species_creation";
+        gameState.currentQuestionIndex = 0;
+        gameState.eventCounter = 0;
+        gameState.culturalPathways = { science: 0, military: 0, ecological: 0, subversive: 0, psychic: 0 };
+        gameState.playerRole = null;
+        gameState.gameYear = 0;
+        gameState.currentKScale = 0.9;
+        gameState.choiceHistory = [];
+        gameState.subPhase = null;
+
+        clearGameUI(); 
+        if(gameOutput) gameOutput.innerHTML = "Welcome! Let's begin creating your species.<br>";
+        if(storyArea) storyArea.innerHTML = "The journey of a thousand stars begins with a single choice.";
+        
+        if (startButton) startButton.style.display = 'none';
+        if (restartButton) restartButton.style.display = 'inline-block';
+        if (downloadLogButton) downloadLogButton.style.display = 'none';
+        if (resultsArea) resultsArea.style.display = 'none';
+        if (debugLog) debugLog.style.display = 'block'; 
+
+        if (debugLog) debugLog.innerHTML += "DEBUG: Game state reset. Starting species creation.<br>";
+        
+        displayCurrentState();
+        updateStatusBar();
+        
+        if (debugLog) debugLog.innerHTML += "DEBUG: Game initialization complete. First question should be visible.<br>";
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.GAME_STATE, { action: 'initializeGame' });
+            window.HyperionErrorHandling.displayErrorToUser("Error initializing game. Please refresh the page and try again.", null, true);
+        } else {
+            console.error("Error in initializeGame:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error initializing game. Please refresh the page and try again.</span><br>";
+        }
+        return false;
+    }
 }
 
 window.initializeGame = initializeGame;
@@ -775,27 +1113,53 @@ window.displayCurrentState = displayCurrentState;
 window.updateStatusBar = updateStatusBar;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const downloadLogButton = document.getElementById('download-log-button');
-    const storyArea = document.getElementById('storyArea');
-    const gameOutput = document.getElementById('game-output');
-    const debugLog = document.getElementById("debugLog");
+    try {
+        const downloadLogButton = document.getElementById('download-log-button');
+        const storyArea = document.getElementById('storyArea');
+        const gameOutput = document.getElementById('game-output');
+        const debugLog = document.getElementById("debugLog");
 
-    if (downloadLogButton) {
-        downloadLogButton.onclick = downloadChoiceHistoryCSV; 
-    }
+        if (!downloadLogButton || !storyArea || !gameOutput) {
+            throw new Error("One or more UI elements missing in DOMContentLoaded");
+        }
 
-    if (storyArea && (storyArea.innerHTML === '' || storyArea.textContent.trim() === '')) {
-         if(gameOutput && gameOutput.innerHTML.includes("Welcome to the Hyperion Nexus Civilization Builder")){
-            storyArea.innerHTML = "Awaiting your command to shape a new civilization.";
-         } else if (!gameOutput || !gameOutput.innerHTML.includes("Welcome!")){
-            if(gameOutput) gameOutput.innerHTML = 'Welcome to the Hyperion Nexus Civilization Builder. Click "Start Game" to begin.';
-         }
-    }
-    updateStatusBar(); 
-    if (debugLog) {
-        debugLog.style.display = "none"; 
-    } else {
-        console.log("DEBUG: DOMContentLoaded. DebugLog element not found.");
+        if (downloadLogButton) {
+            downloadLogButton.onclick = downloadChoiceHistoryCSV; 
+        }
+
+        if (storyArea && (storyArea.innerHTML === '' || storyArea.textContent.trim() === '')) {
+            if(gameOutput && gameOutput.innerHTML.includes("Welcome to the Hyperion Nexus Civilization Builder")){
+                storyArea.innerHTML = "Awaiting your command to shape a new civilization.";
+            } else if (!gameOutput || !gameOutput.innerHTML.includes("Welcome!")){
+                if(gameOutput) gameOutput.innerHTML = 'Welcome to the Hyperion Nexus Civilization Builder. Click "Start Game" to begin.';
+            }
+        }
+        
+        updateStatusBar(); 
+        
+        if (debugLog) {
+            debugLog.style.display = "none"; 
+        } else {
+            console.log("DEBUG: DOMContentLoaded. DebugLog element not found.");
+        }
+        
+        // Check for recovery on page load
+        if (window.HyperionErrorHandling && window.HyperionErrorHandling.canRecoverGameState()) {
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<br><span style='color:blue;'>A saved game was found. Click 'Start Game' to continue or start a new game.</span><br>";
+        }
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'DOMContentLoaded' });
+            window.HyperionErrorHandling.displayErrorToUser("Error initializing UI. Please refresh the page.", null, true);
+        } else {
+            console.error("Error in DOMContentLoaded:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error initializing UI. Please refresh the page.</span><br>";
+        }
+        return false;
     }
 });
 
