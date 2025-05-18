@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperion Nexus - Text Adventure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #game-container {
+            background-color: #2c2c2c;
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        #statusBar {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        #game-output {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #222; /* Darker for log output */
+            border-radius: 4px;
+            min-height: 100px;
+            max-height: 200px; /* Limit height and make scrollable */
+            overflow-y: auto; /* Enable vertical scroll */
+            white-space: pre-wrap; /* Preserve formatting */
+            border: 1px solid #444;
+            font-size: 0.9em;
+        }
+        #storyArea {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #252525; 
+            border-radius: 4px; 
+            min-height: 50px;
+            border: 1px solid #444;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+        }
+        #debugLog {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #111; 
+            color: #aaa; 
+            border-radius: 4px; 
+            max-height: 150px; 
+            overflow-y: auto; 
+            font-size: 0.8em; 
+            white-space: pre-wrap;
+            border: 1px solid #333;
+        }
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #c5c5c5;
+            padding: 10px;
+            background-color: #383838;
+            border-radius: 4px;
+        }
+        .choices-container button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        .choices-container button:hover {
+            background-color: #357abd;
+        }
+        .role-selection button {
+             background-color: #5cb85c; /* Green for role selection */
+        }
+        .role-selection button:hover {
+            background-color: #4cae4c;
+        }
+        #results-area {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+        .pathway-result {
+            margin-bottom: 8px;
+        }
+        .pathway-name {
+            font-weight: bold;
+            color: #4a90e2;
+        }
+        .pathway-bar-container {
+            width: 100%;
+            background-color: #555;
+            border-radius: 4px;
+            margin-top: 4px;
+            height: 20px;
+            overflow: hidden;
+        }
+        .pathway-bar {
+            height: 100%;
+            background-color: #4a90e2;
+            border-radius: 4px;
+            text-align: right;
+            padding-right: 5px;
+            color: white;
+            font-size: 0.8em;
+            line-height: 20px;
+            box-sizing: border-box;
+            transition: width 0.5s ease-in-out;
+        }
+        #start-button, #restart-button, #download-log-button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        #start-button { background-color: #5cb85c; }
+        #start-button:hover { background-color: #4cae4c; }
+        #restart-button { background-color: #d9534f; }
+        #restart-button:hover { background-color: #c9302c; }
+        #download-log-button { background-color: #f0ad4e; }
+        #download-log-button:hover { background-color: #ec971f; }
+    </style>
+</head>
+<body>
+    <h1>Hyperion Nexus: Civilization Builder</h1>
+    <div id="game-container">
+        <div id="statusBar">Game Year: 0 | K-Scale: 0.9 | Role: N/A</div>
+        <div id="game-output">
+            Welcome to the Hyperion Nexus Civilization Builder. Click "Start Game" to begin.
+        </div>
+        <div id="question-area" class="question-text"></div>
+        <div id="choices-area" class="choices-container"></div>
+        <div id="storyArea"></div> 
+        <div id="results-area" style="display:none;">
+            <h2>Game Over - Results</h2>
+            <div id="pathway-scores"></div>
+            <h3>Choice History (Summary):</h3>
+            <div id="choice-history-log" style="white-space: pre-wrap; max-height: 200px; overflow-y: auto; background-color: #222; padding: 10px; border-radius: 3px; font-size: 0.8em;"></div>
+            <button id="download-log-button" style="display:none;">Download Full Game Log (CSV)</button>
+        </div>
+        <div id="debugLog" style="display: none;"></div> 
+    </div>
+    <button id="start-button">Start Game</button>
+    <button id="restart-button" style="display:none;">Restart Game</button>
+
+    <script src="hyperion_nexus_game.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("INDEX.HTML INLINE SCRIPT: DOMContentLoaded event fired.");
+
+            const gameOutput = document.getElementById("game-output");
+            const questionArea = document.getElementById("question-area");
+            const choicesArea = document.getElementById("choices-area");
+            const storyArea = document.getElementById("storyArea"); 
+            const debugLog = document.getElementById("debugLog"); 
+            const resultsArea = document.getElementById("results-area");
+            const pathwayScoresDiv = document.getElementById("pathway-scores");
+            const choiceHistoryLog = document.getElementById("choice-history-log");
+            const startButton = document.getElementById("start-button");
+            const restartButton = document.getElementById("restart-button");
+            const downloadLogButton = document.getElementById("download-log-button");
+            const statusBar = document.getElementById("statusBar"); 
+
+            if (!gameOutput || !questionArea || !choicesArea || !storyArea || !debugLog || !resultsArea || !pathwayScoresDiv || !choiceHistoryLog || !startButton || !restartButton || !downloadLogButton || !statusBar) {
+                console.error("INDEX.HTML INLINE SCRIPT ERROR: One or more critical DOM elements not found!");
+                if(gameOutput) gameOutput.innerHTML = "<span style=\"color:red;\">CRITICAL ERROR: UI elements missing. Game cannot start.</span>";
+                return;
+            }
+            console.log("INDEX.HTML INLINE SCRIPT: All critical DOM elements found.");
+            
+            if (storyArea && (storyArea.innerHTML === '' || storyArea.textContent.trim() === '')) {
+                 if(gameOutput && gameOutput.innerHTML.includes("Welcome to the Hyperion Nexus Civilization Builder")){
+                    storyArea.innerHTML = "Awaiting your command to shape a new civilization.";
+                 } else if (!gameOutput || !gameOutput.innerHTML.includes("Welcome!")){
+                    if(gameOutput) gameOutput.innerHTML = 'Welcome to the Hyperion Nexus Civilization Builder. Click "Start Game" to begin.';
+                 }
+            }
+
+            startButton.addEventListener("click", () => {
+                console.log("INDEX.HTML INLINE SCRIPT: Start Button CLICKED.");
+                if(debugLog) debugLog.style.display = "block"; 
+                
+                if (typeof window.initializeGame === "function") {
+                    window.initializeGame();
+                } else {
+                    if(gameOutput) gameOutput.innerHTML += "<span style=\"color:red;\">ERROR: initializeGame is NOT a function! Check hyperion_nexus_game.js</span><br>"; 
+                    return;
+                }
+            });
+
+            restartButton.addEventListener("click", () => {
+                if (typeof window.initializeGame === "function") {
+                    window.initializeGame(); 
+                } else {
+                    if(gameOutput) gameOutput.innerHTML = "<span style=\"color:red;\">ERROR: Restart function components missing. Check hyperion_nexus_game.js</span>";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
