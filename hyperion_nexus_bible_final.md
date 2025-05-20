@@ -4513,7 +4513,7 @@ HyperJump technology offers instantaneous point-to-point transit, with effective
 
 HyperJump technology enables true galactic-scale civilization, making any point in the galaxy accessible within a reasonable timeframe. This capability transforms civilization from a collection of semi-independent stellar regions to an integrated galactic society with unified cultural and economic systems. (Note: HyperJump MK I effective speed is approx. 1.40 times faster than Transwarp MK V).
 
-### Stargate Networks (K-Scale 3.0-3.5)
+### Stargate Networks (K-Scale 3.5-4.3)
 
 Stargate technology establishes permanent transit points that enable instantaneous travel between fixed locations:
 
@@ -4529,7 +4529,7 @@ Stargate technology establishes permanent transit points that enable instantaneo
 
 Stargate networks transform interstellar travel from an individual vessel capability to an infrastructure system, similar to the transition from off-road vehicles to highway networks. This approach dramatically reduces energy requirements for routine travel while enabling unprecedented traffic volume between established locations.
 
-### Wormhole Manipulation (K-Scale 3.5-4.5)
+### Wormhole Manipulation (K-Scale 4.2+)
 
 The most advanced form of interstellar travel involves direct manipulation of space-time to create traversable wormholes at will:
 
