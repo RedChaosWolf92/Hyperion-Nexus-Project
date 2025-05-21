@@ -9,24 +9,92 @@
 export function clearGameUI() {
     try {
         console.log("clearGameUI called");
+        
+        // First ensure all container elements exist
+        const gameContainer = document.getElementById('game-container');
         const gameContent = document.getElementById('game-content');
         const gameChoices = document.getElementById('game-choices');
         
-        console.log("DOM elements:", {
+        if (!gameContent || !gameChoices) {
+            console.error("Critical game containers missing");
+            // Attempt to recreate the structure if possible
+            if (gameContainer) {
+                if (!gameContent) {
+                    const newGameContent = document.createElement('div');
+                    newGameContent.id = 'game-content';
+                    gameContainer.appendChild(newGameContent);
+                    console.log("Recreated game-content container");
+                }
+                
+                if (!gameChoices) {
+                    const newGameChoices = document.createElement('div');
+                    newGameChoices.id = 'game-choices';
+                    gameContainer.appendChild(newGameChoices);
+                    console.log("Recreated game-choices container");
+                }
+            }
+        }
+        
+        // Now ensure storyArea and choiceArea exist
+        let storyArea = document.getElementById('storyArea');
+        let choiceArea = document.getElementById('choice-area');
+        
+        console.log("DOM elements before clearing:", {
             gameContent: gameContent,
-            gameChoices: gameChoices
+            gameChoices: gameChoices,
+            storyArea: storyArea,
+            choiceArea: choiceArea
         });
         
-        if (gameContent) gameContent.innerHTML = '';
-        if (gameChoices) gameChoices.innerHTML = '';
+        // If storyArea doesn't exist, create it inside game-content
+        if (!storyArea && gameContent) {
+            storyArea = document.createElement('div');
+            storyArea.id = 'storyArea';
+            gameContent.innerHTML = '';
+            gameContent.appendChild(storyArea);
+            console.log("Created storyArea element");
+        } else if (storyArea) {
+            // Only clear the storyArea content, not the container
+            storyArea.innerHTML = '';
+        }
+        
+        // If choiceArea doesn't exist, create it inside game-choices
+        if (!choiceArea && gameChoices) {
+            choiceArea = document.createElement('div');
+            choiceArea.id = 'choice-area';
+            gameChoices.innerHTML = '';
+            gameChoices.appendChild(choiceArea);
+            console.log("Created choice-area element");
+        } else if (choiceArea) {
+            // Only clear the choiceArea content, not the container
+            choiceArea.innerHTML = '';
+        }
+        
+        console.log("DOM elements after clearing:", {
+            storyArea: document.getElementById('storyArea'),
+            choiceArea: document.getElementById('choice-area')
+        });
         
         console.log("Game UI cleared successfully");
     } catch (error) {
+        console.error("Error in clearGameUI:", error);
+        // More robust error handling
+        try {
+            // Last resort attempt to reset the UI
+            const gameContent = document.getElementById('game-content');
+            const gameChoices = document.getElementById('game-choices');
+            
+            if (gameContent) gameContent.innerHTML = '<div id="storyArea"></div>';
+            if (gameChoices) gameChoices.innerHTML = '<div id="choice-area"></div>';
+            
+            console.log("Emergency UI reset attempted");
+        } catch (secondError) {
+            console.error("Emergency UI reset failed:", secondError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'clearGameUI' });
             window.HyperionErrorHandling.displayErrorToUser("Error clearing game UI.", null, false);
-        } else {
-            console.error("Error in clearGameUI:", error);
         }
     }
 }
@@ -41,6 +109,21 @@ export function displayCurrentState(gameState) {
         }
         console.log("DEBUG: Game State:", gameState);
         console.log(`DEBUG: Phase: ${gameState.gamePhase}, QuestionIndex: ${gameState.currentQuestionIndex}, EventCounter: ${gameState.eventCounter}`);
+        
+        // First check for out-of-bounds indices and fix them
+        if (gameState.gamePhase === "species_creation" && 
+            gameState.currentQuestionIndex >= window.speciesCreationQuestions.length) {
+            console.log("Question index out of bounds for species creation, transitioning to summary");
+            window.transitionGamePhase("species_summary");
+            return;
+        }
+        
+        if (gameState.gamePhase === "starship_creation" && 
+            gameState.currentQuestionIndex >= window.starshipCreationQuestions.length) {
+            console.log("Question index out of bounds for starship creation, transitioning to summary");
+            window.transitionGamePhase("starship_summary");
+            return;
+        }
         
         // After displaying state, show the appropriate phase content
         if (typeof window.showSpeciesCreationQuestion === 'function' && gameState.gamePhase === 'species_creation') {
@@ -68,13 +151,60 @@ export function displayCurrentState(gameState) {
             console.log("Calling showGameEnd from displayCurrentState");
             window.showGameEnd();
         } else {
-            console.log("No matching phase handler found for:", gameState.gamePhase, gameState.subPhase);
+            console.warn("No matching phase handler found for:", gameState.gamePhase, gameState.subPhase);
+            
+            // Attempt recovery by showing debug info
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Phase Error</h3><p>The game encountered an error with phase: ${gameState.gamePhase}</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("The game encountered an error. Would you like to restart?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
         }
     } catch (error) {
+        console.error("Error in displayCurrentState:", error);
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Display Error</h3><p>The game encountered an error displaying the current state.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("The game encountered an error. Would you like to restart?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from displayCurrentState error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'displayCurrentState' });
-        } else {
-            console.error("Error in displayCurrentState:", error);
         }
     }
 }
@@ -95,15 +225,29 @@ export function updateStatusBar(gameState, getTopCulturalPathways) {
         
         const topPathways = getTopCulturalPathways();
         let pathwayText = topPathways.map(p => `${p.name} (${p.value})`).join(', ');
-        statusBar.textContent = `Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale} | Role: ${gameState.playerRole} | Top Cultural Pathways: ${pathwayText}`;
+        statusBar.textContent = `Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale} | Role: ${gameState.playerRole || 'Undecided'} | Top Cultural Pathways: ${pathwayText}`;
         
         console.log("Status bar updated successfully");
     } catch (error) {
+        console.error("Error in updateStatusBar:", error);
+        
+        // Try to create status bar if missing
+        try {
+            const gameContainer = document.getElementById('game-container');
+            if (gameContainer && !document.getElementById('status-bar')) {
+                const newStatusBar = document.createElement('div');
+                newStatusBar.id = 'status-bar';
+                newStatusBar.textContent = 'Year: 0 | K-Scale: 0.9 | Role: Undecided';
+                gameContainer.appendChild(newStatusBar);
+                console.log("Created missing status bar");
+            }
+        } catch (secondaryError) {
+            console.error("Failed to create status bar:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'updateStatusBar' });
             window.HyperionErrorHandling.displayErrorToUser("Error updating status bar.", null, false);
-        } else {
-            console.error("Error in updateStatusBar:", error);
         }
     }
 }
@@ -124,12 +268,50 @@ export function setupUIEventListeners(initializeGame) {
             restartButton.onclick = function() {
                 console.log("Restart button clicked (direct handler)");
                 if (confirm("Are you sure you want to restart the game? All progress will be lost.")) {
-                    localStorage.removeItem('hyperionNexusGameState');
-                    initializeGame();
+                    try {
+                        console.log("Restarting game...");
+                        localStorage.removeItem('hyperionNexusGameState');
+                        
+                        // Reset critical game elements first
+                        const gameOutput = document.getElementById("game-output");
+                        if (gameOutput) gameOutput.innerHTML = "";
+                        
+                        // Ensure DOM structure is intact
+                        if (typeof window.ensureDOMStructure === 'function') {
+                            window.ensureDOMStructure();
+                        } else {
+                            console.warn("ensureDOMStructure function not available");
+                            // Basic DOM check
+                            const gameContent = document.getElementById('game-content');
+                            const gameChoices = document.getElementById('game-choices');
+                            
+                            if (!gameContent || !gameChoices) {
+                                // Critical error - recreate basic structure
+                                const gameContainer = document.getElementById('game-container');
+                                if (gameContainer) {
+                                    gameContainer.innerHTML = `
+                                        <div id="game-content"><div id="storyArea"></div></div>
+                                        <div id="game-choices"><div id="choice-area"></div></div>
+                                    `;
+                                    console.log("Emergency DOM structure reset performed");
+                                }
+                            }
+                        }
+                        
+                        // Now initialize the game
+                        initializeGame();
+                    } catch (error) {
+                        console.error("Error during restart:", error);
+                        alert("Error restarting game. Please refresh the page to start over.");
+                    }
                 }
             };
         } else {
             console.warn("Restart button not found for direct handler");
+            // Create restart button if missing
+            if (typeof window.createRestartButton === 'function') {
+                window.createRestartButton();
+            }
         }
         
         // For backward compatibility, keep the event delegation approach
@@ -138,19 +320,30 @@ export function setupUIEventListeners(initializeGame) {
                 (event.target.tagName === 'BUTTON' && event.target.textContent.includes('Restart Game'))) {
                 console.log("Restart button clicked (delegation handler)");
                 if (confirm("Are you sure you want to restart the game? All progress will be lost.")) {
-                    localStorage.removeItem('hyperionNexusGameState');
-                    initializeGame();
+                    try {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        
+                        // Ensure DOM structure before initializing
+                        if (typeof window.ensureDOMStructure === 'function') {
+                            window.ensureDOMStructure();
+                        }
+                        
+                        initializeGame();
+                    } catch (error) {
+                        console.error("Error during restart (delegation):", error);
+                        alert("Error restarting game. Please refresh the page to start over.");
+                    }
                 }
             }
         });
         
         console.log("UI event listeners set up successfully");
     } catch (error) {
+        console.error("Error in setupUIEventListeners:", error);
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'setupUIEventListeners' });
             window.HyperionErrorHandling.displayErrorToUser("Error setting up UI event listeners.", null, true);
-        } else {
-            console.error("Error in setupUIEventListeners:", error);
         }
     }
 }
@@ -176,41 +369,54 @@ export function handleSavedGameRestoration(gameState, initializeGame, showSpecie
                     Object.assign(gameState, parsedState);
                     console.log("DEBUG: Game state restored from localStorage", gameState);
                     
+                    // Ensure DOM structure is intact before displaying
+                    if (typeof window.ensureDOMStructure === 'function') {
+                        window.ensureDOMStructure();
+                    }
+                    
                     // Update UI based on restored state
                     const statusBar = document.getElementById('status-bar');
                     if (statusBar) {
-                        statusBar.textContent = `Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale} | Role: ${gameState.playerRole}`;
+                        statusBar.textContent = `Year: ${gameState.gameYear} | K-Scale: ${gameState.currentKScale} | Role: ${gameState.playerRole || 'Undecided'}`;
                     }
                     
-                    // Determine which phase to show based on restored state
-                    if (gameState.gamePhase === 'species_creation') {
-                        showSpeciesCreationQuestion(gameState.currentQuestionIndex);
-                    } else if (gameState.gamePhase === 'species_summary') {
-                        showSpeciesSummary();
-                    } else if (gameState.gamePhase === 'starship_creation') {
-                        showStarshipCreationQuestion(gameState.currentQuestionIndex);
-                    } else if (gameState.gamePhase === 'starship_summary') {
-                        showStarshipSummary();
-                    } else if (gameState.gamePhase === 'role_selection_initial') {
-                        showRoleSelectionInitial();
-                    } else if (gameState.gamePhase === 'k_scale_progression' && gameState.subPhase === 'event') {
-                        showKScaleEvent();
-                    } else if (gameState.gamePhase === 'k_scale_progression' && gameState.subPhase === 'role_change_decision') {
-                        showRoleChangeDecision();
-                    } else if (gameState.gamePhase === 'game_end') {
-                        showGameEnd();
+                    // Use displayCurrentState to show the appropriate phase
+                    if (typeof window.displayCurrentState === 'function') {
+                        window.displayCurrentState(gameState);
+                        return true;
                     } else {
-                        // Fallback to initialization if phase is unknown
-                        console.warn("Unknown game phase in saved state, initializing new game");
-                        initializeGame();
+                        // Fallback to direct phase handling if displayCurrentState is not available
+                        // Determine which phase to show based on restored state
+                        if (gameState.gamePhase === 'species_creation') {
+                            showSpeciesCreationQuestion(gameState.currentQuestionIndex);
+                        } else if (gameState.gamePhase === 'species_summary') {
+                            showSpeciesSummary();
+                        } else if (gameState.gamePhase === 'starship_creation') {
+                            showStarshipCreationQuestion(gameState.currentQuestionIndex);
+                        } else if (gameState.gamePhase === 'starship_summary') {
+                            showStarshipSummary();
+                        } else if (gameState.gamePhase === 'role_selection_initial') {
+                            showRoleSelectionInitial();
+                        } else if (gameState.gamePhase === 'k_scale_progression' && gameState.subPhase === 'event') {
+                            showKScaleEvent();
+                        } else if (gameState.gamePhase === 'k_scale_progression' && gameState.subPhase === 'role_change_decision') {
+                            showRoleChangeDecision();
+                        } else if (gameState.gamePhase === 'game_end') {
+                            showGameEnd();
+                        } else {
+                            // Fallback to initialization if phase is unknown
+                            console.warn("Unknown game phase in saved state, initializing new game");
+                            initializeGame();
+                        }
+                        return true;
                     }
-                    return true;
                 } catch (error) {
+                    console.error("Error restoring saved game:", error);
+                    
                     if (window.HyperionErrorHandling) {
                         window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.DATA, { action: 'handleSavedGameRestoration_parse' });
                         window.HyperionErrorHandling.displayErrorToUser("Error restoring saved game. Starting a new game.", null, true);
                     } else {
-                        console.error("Error restoring saved game:", error);
                         alert("There was an error restoring your saved game. Starting a new game.");
                     }
                 }
@@ -220,11 +426,11 @@ export function handleSavedGameRestoration(gameState, initializeGame, showSpecie
         }
         return false;
     } catch (error) {
+        console.error("Error in handleSavedGameRestoration:", error);
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'handleSavedGameRestoration' });
             window.HyperionErrorHandling.displayErrorToUser("Error handling saved game restoration.", null, true);
-        } else {
-            console.error("Error in handleSavedGameRestoration:", error);
         }
         return false;
     }
