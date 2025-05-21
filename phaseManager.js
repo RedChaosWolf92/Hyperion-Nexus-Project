@@ -16,6 +16,7 @@ export function showSpeciesCreationQuestion() {
     try {
         console.log("showSpeciesCreationQuestion called");
         
+        // First ensure DOM elements exist
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         
@@ -25,7 +26,36 @@ export function showSpeciesCreationQuestion() {
         });
         
         if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for species creation question");
+            console.error("UI elements missing for species creation question");
+            
+            // Attempt to recreate missing elements
+            if (!storyArea) {
+                const gameContent = document.getElementById("game-content");
+                if (gameContent) {
+                    const newStoryArea = document.createElement("div");
+                    newStoryArea.id = "storyArea";
+                    gameContent.appendChild(newStoryArea);
+                    console.log("Recreated storyArea element");
+                }
+            }
+            
+            if (!choiceArea) {
+                const gameChoices = document.getElementById("game-choices");
+                if (gameChoices) {
+                    const newChoiceArea = document.createElement("div");
+                    newChoiceArea.id = "choice-area";
+                    gameChoices.appendChild(newChoiceArea);
+                    console.log("Recreated choice-area element");
+                }
+            }
+            
+            // Try again with recreated elements
+            const retryChoiceArea = document.getElementById("choice-area");
+            const retryStoryArea = document.getElementById("storyArea");
+            
+            if (!retryChoiceArea || !retryStoryArea) {
+                throw new Error("Failed to recreate UI elements for species creation question");
+            }
         }
         
         const speciesCreationQuestions = window.speciesCreationQuestions;
@@ -33,8 +63,18 @@ export function showSpeciesCreationQuestion() {
             throw new Error("Species creation questions not found");
         }
         
+        // Check for out-of-bounds index and handle appropriately
         if (gameState.currentQuestionIndex >= speciesCreationQuestions.length) {
-            throw new Error("Invalid question index for species creation: " + gameState.currentQuestionIndex);
+            console.log("Question index out of bounds, transitioning to species summary");
+            if (typeof window.transitionGamePhase === 'function') {
+                window.transitionGamePhase("species_summary");
+                return true;
+            } else {
+                gameState.gamePhase = "species_summary";
+                gameState.currentQuestionIndex = 0;
+                window.displayCurrentState(gameState);
+                return true;
+            }
         }
         
         const currentQuestion = speciesCreationQuestions[gameState.currentQuestionIndex];
@@ -53,14 +93,41 @@ export function showSpeciesCreationQuestion() {
         console.log("Species creation question displayed successfully");
         return true;
     } catch (error) {
+        console.error("Error in showSpeciesCreationQuestion:", error);
+        
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Error Displaying Question</h3>
+                    <p>There was an error displaying the current question. Please try again or restart the game.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("Would you like to restart the game?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from showSpeciesCreationQuestion error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
                 action: 'showSpeciesCreationQuestion',
                 questionIndex: gameState.currentQuestionIndex
             });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying species creation question.", null, true);
-        } else {
-            console.error("Error in showSpeciesCreationQuestion:", error);
         }
         return false;
     }
@@ -74,6 +141,7 @@ export function showSpeciesSummary() {
     try {
         console.log("showSpeciesSummary called");
         
+        // First ensure DOM elements exist
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         const gameOutput = document.getElementById("game-output");
@@ -85,7 +153,21 @@ export function showSpeciesSummary() {
         });
         
         if (!choiceArea || !storyArea || !gameOutput) {
-            throw new Error("UI elements missing for species summary");
+            console.error("UI elements missing for species summary");
+            
+            // Attempt to recreate missing elements
+            if (typeof window.ensureDOMStructure === 'function') {
+                window.ensureDOMStructure();
+            }
+            
+            // Try again with recreated elements
+            const retryChoiceArea = document.getElementById("choice-area");
+            const retryStoryArea = document.getElementById("storyArea");
+            const retryGameOutput = document.getElementById("game-output");
+            
+            if (!retryChoiceArea || !retryStoryArea || !retryGameOutput) {
+                throw new Error("Failed to recreate UI elements for species summary");
+            }
         }
         
         const topPathways = getTopCulturalPathways();
@@ -113,24 +195,70 @@ export function showSpeciesSummary() {
         
         gameOutput.innerHTML += "<br>Species creation complete. Moving to starship design.<br>";
         
+        choiceArea.innerHTML = "";
         const button = document.createElement("button");
         button.className = "choice-button";
         button.textContent = "Begin Starship Design";
         button.onclick = function() {
-            gameState.gamePhase = "starship_creation";
-            gameState.currentQuestionIndex = 0;
-            window.displayCurrentState();
+            if (typeof window.transitionGamePhase === 'function') {
+                window.transitionGamePhase("starship_creation", null, true);
+            } else {
+                gameState.gamePhase = "starship_creation";
+                gameState.currentQuestionIndex = 0;
+                window.displayCurrentState(gameState);
+            }
         };
         choiceArea.appendChild(button);
         
         console.log("Species summary displayed successfully");
         return true;
     } catch (error) {
+        console.error("Error in showSpeciesSummary:", error);
+        
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Error Displaying Species Summary</h3>
+                    <p>There was an error displaying the species summary. Please try again or restart the game.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const continueButton = document.createElement("button");
+                continueButton.className = "choice-button";
+                continueButton.textContent = "Continue to Starship Design";
+                continueButton.onclick = function() {
+                    if (typeof window.transitionGamePhase === 'function') {
+                        window.transitionGamePhase("starship_creation", null, true);
+                    } else {
+                        gameState.gamePhase = "starship_creation";
+                        gameState.currentQuestionIndex = 0;
+                        window.displayCurrentState(gameState);
+                    }
+                };
+                choiceArea.appendChild(continueButton);
+                
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("Would you like to restart the game?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from showSpeciesSummary error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showSpeciesSummary' });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying species summary.", null, true);
-        } else {
-            console.error("Error in showSpeciesSummary:", error);
         }
         return false;
     }
@@ -144,6 +272,7 @@ export function showStarshipCreationQuestion() {
     try {
         console.log("showStarshipCreationQuestion called");
         
+        // First ensure DOM elements exist
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         
@@ -153,7 +282,20 @@ export function showStarshipCreationQuestion() {
         });
         
         if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for starship creation question");
+            console.error("UI elements missing for starship creation question");
+            
+            // Attempt to recreate missing elements
+            if (typeof window.ensureDOMStructure === 'function') {
+                window.ensureDOMStructure();
+            }
+            
+            // Try again with recreated elements
+            const retryChoiceArea = document.getElementById("choice-area");
+            const retryStoryArea = document.getElementById("storyArea");
+            
+            if (!retryChoiceArea || !retryStoryArea) {
+                throw new Error("Failed to recreate UI elements for starship creation question");
+            }
         }
         
         const starshipCreationQuestions = window.starshipCreationQuestions;
@@ -161,8 +303,18 @@ export function showStarshipCreationQuestion() {
             throw new Error("Starship creation questions not found");
         }
         
+        // Check for out-of-bounds index and handle appropriately
         if (gameState.currentQuestionIndex >= starshipCreationQuestions.length) {
-            throw new Error("Invalid question index for starship creation: " + gameState.currentQuestionIndex);
+            console.log("Question index out of bounds, transitioning to starship summary");
+            if (typeof window.transitionGamePhase === 'function') {
+                window.transitionGamePhase("starship_summary");
+                return true;
+            } else {
+                gameState.gamePhase = "starship_summary";
+                gameState.currentQuestionIndex = 0;
+                window.displayCurrentState(gameState);
+                return true;
+            }
         }
         
         // For the first question, allow starship naming
@@ -171,6 +323,7 @@ export function showStarshipCreationQuestion() {
                 <p>Before we begin designing your starship, what name will you give to this historic vessel?</p>
                 <input type="text" id="starship-name" value="${gameState.starshipName}" placeholder="Enter starship name">`;
             
+            choiceArea.innerHTML = "";
             const nameButton = document.createElement("button");
             nameButton.className = "choice-button";
             nameButton.textContent = "Confirm Name";
@@ -204,14 +357,41 @@ export function showStarshipCreationQuestion() {
         console.log("Starship creation question displayed successfully");
         return true;
     } catch (error) {
+        console.error("Error in showStarshipCreationQuestion:", error);
+        
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Error Displaying Question</h3>
+                    <p>There was an error displaying the current starship question. Please try again or restart the game.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("Would you like to restart the game?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from showStarshipCreationQuestion error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
                 action: 'showStarshipCreationQuestion',
                 questionIndex: gameState.currentQuestionIndex
             });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying starship creation question.", null, true);
-        } else {
-            console.error("Error in showStarshipCreationQuestion:", error);
         }
         return false;
     }
@@ -225,6 +405,7 @@ export function showStarshipSummary() {
     try {
         console.log("showStarshipSummary called");
         
+        // First ensure DOM elements exist
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         const gameOutput = document.getElementById("game-output");
@@ -236,7 +417,21 @@ export function showStarshipSummary() {
         });
         
         if (!choiceArea || !storyArea || !gameOutput) {
-            throw new Error("UI elements missing for starship summary");
+            console.error("UI elements missing for starship summary");
+            
+            // Attempt to recreate missing elements
+            if (typeof window.ensureDOMStructure === 'function') {
+                window.ensureDOMStructure();
+            }
+            
+            // Try again with recreated elements
+            const retryChoiceArea = document.getElementById("choice-area");
+            const retryStoryArea = document.getElementById("storyArea");
+            const retryGameOutput = document.getElementById("game-output");
+            
+            if (!retryChoiceArea || !retryStoryArea || !retryGameOutput) {
+                throw new Error("Failed to recreate UI elements for starship summary");
+            }
         }
         
         const topPathways = getTopCulturalPathways();
@@ -264,23 +459,68 @@ export function showStarshipSummary() {
         
         gameOutput.innerHTML += `<br>Starship design complete. The ${gameState.starshipName} stands ready.<br>`;
         
+        choiceArea.innerHTML = "";
         const button = document.createElement("button");
         button.className = "choice-button";
         button.textContent = "Choose Your Role";
         button.onclick = function() {
-            gameState.gamePhase = "role_selection_initial";
-            window.displayCurrentState();
+            if (typeof window.transitionGamePhase === 'function') {
+                window.transitionGamePhase("role_selection_initial");
+            } else {
+                gameState.gamePhase = "role_selection_initial";
+                window.displayCurrentState(gameState);
+            }
         };
         choiceArea.appendChild(button);
         
         console.log("Starship summary displayed successfully");
         return true;
     } catch (error) {
+        console.error("Error in showStarshipSummary:", error);
+        
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Error Displaying Starship Summary</h3>
+                    <p>There was an error displaying the starship summary. Please try again or restart the game.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const continueButton = document.createElement("button");
+                continueButton.className = "choice-button";
+                continueButton.textContent = "Continue to Role Selection";
+                continueButton.onclick = function() {
+                    if (typeof window.transitionGamePhase === 'function') {
+                        window.transitionGamePhase("role_selection_initial");
+                    } else {
+                        gameState.gamePhase = "role_selection_initial";
+                        window.displayCurrentState(gameState);
+                    }
+                };
+                choiceArea.appendChild(continueButton);
+                
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("Would you like to restart the game?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from showStarshipSummary error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showStarshipSummary' });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying starship summary.", null, true);
-        } else {
-            console.error("Error in showStarshipSummary:", error);
         }
         return false;
     }
@@ -294,6 +534,7 @@ export function showRoleSelectionInitial() {
     try {
         console.log("showRoleSelectionInitial called");
         
+        // First ensure DOM elements exist
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         
@@ -303,7 +544,20 @@ export function showRoleSelectionInitial() {
         });
         
         if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for role selection");
+            console.error("UI elements missing for role selection");
+            
+            // Attempt to recreate missing elements
+            if (typeof window.ensureDOMStructure === 'function') {
+                window.ensureDOMStructure();
+            }
+            
+            // Try again with recreated elements
+            const retryChoiceArea = document.getElementById("choice-area");
+            const retryStoryArea = document.getElementById("storyArea");
+            
+            if (!retryChoiceArea || !retryStoryArea) {
+                throw new Error("Failed to recreate UI elements for role selection");
+            }
         }
         
         storyArea.innerHTML = `<h3>Choose Your Role</h3>
@@ -338,236 +592,61 @@ export function showRoleSelectionInitial() {
         console.log("Role selection displayed successfully");
         return true;
     } catch (error) {
+        console.error("Error in showRoleSelectionInitial:", error);
+        
+        // Attempt recovery
+        try {
+            const storyArea = document.getElementById("storyArea");
+            const choiceArea = document.getElementById("choice-area");
+            
+            if (storyArea) {
+                storyArea.innerHTML = `<h3>Error Displaying Role Selection</h3>
+                    <p>There was an error displaying the role selection screen. Please try again or restart the game.</p>`;
+            }
+            
+            if (choiceArea) {
+                choiceArea.innerHTML = "";
+                const captainButton = document.createElement("button");
+                captainButton.className = "choice-button";
+                captainButton.textContent = "Become Captain";
+                captainButton.onclick = function() { window.handleChoice("captain"); };
+                choiceArea.appendChild(captainButton);
+                
+                const leaderButton = document.createElement("button");
+                leaderButton.className = "choice-button";
+                leaderButton.textContent = "Become Civilization Leader";
+                leaderButton.onclick = function() { window.handleChoice("civ_leader"); };
+                choiceArea.appendChild(leaderButton);
+                
+                const restartButton = document.createElement("button");
+                restartButton.className = "choice-button";
+                restartButton.textContent = "Restart Game";
+                restartButton.onclick = function() {
+                    if (confirm("Would you like to restart the game?")) {
+                        localStorage.removeItem('hyperionNexusGameState');
+                        window.initializeGame();
+                    }
+                };
+                choiceArea.appendChild(restartButton);
+            }
+        } catch (secondaryError) {
+            console.error("Failed to recover from showRoleSelectionInitial error:", secondaryError);
+        }
+        
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showRoleSelectionInitial' });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying role selection.", null, true);
-        } else {
-            console.error("Error in showRoleSelectionInitial:", error);
         }
         return false;
     }
 }
 
-/**
- * Displays the current K-Scale event
- * @returns {boolean} Whether the display was successful
- */
-export function showKScaleEvent() {
-    try {
-        console.log("showKScaleEvent called");
-        
-        const choiceArea = document.getElementById("choice-area");
-        const storyArea = document.getElementById("storyArea");
-        
-        console.log("DOM elements:", {
-            choiceArea: choiceArea,
-            storyArea: storyArea
-        });
-        
-        if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for K-Scale event");
-        }
-        
-        const kScaleEvents = window.kScaleEvents;
-        if (!kScaleEvents) {
-            throw new Error("K-Scale events not found");
-        }
-        
-        const currentKScaleEvents = kScaleEvents[gameState.currentKScale.toFixed(1)];
-        if (!currentKScaleEvents || gameState.eventCounter >= currentKScaleEvents.length) {
-            throw new Error(`No events found for K-Scale ${gameState.currentKScale.toFixed(1)} at counter ${gameState.eventCounter}`);
-        }
-        
-        const currentEvent = currentKScaleEvents[gameState.eventCounter];
-        const eventText = currentEvent.text_template
-            .replace('{starshipName}', gameState.starshipName)
-            .replace('{gameYear}', gameState.gameYear);
-        
-        let roleSpecificIntro = "";
-        if (gameState.playerRole === "Captain") {
-            roleSpecificIntro = `<p>As Captain of the ${gameState.starshipName}, you must decide:</p>`;
-        } else if (gameState.playerRole === "Civilization Leader") {
-            roleSpecificIntro = "<p>As leader of your civilization, you must decide:</p>";
-        }
-        
-        storyArea.innerHTML = `<h3>Year ${gameState.gameYear} - K-Scale ${gameState.currentKScale.toFixed(1)}</h3>
-            <p>${eventText}</p>
-            ${roleSpecificIntro}`;
-        
-        choiceArea.innerHTML = "";
-        currentEvent.choices.forEach(choice => {
-            const button = document.createElement("button");
-            button.className = "choice-button";
-            button.textContent = choice.text;
-            button.onclick = function() { window.handleChoice(choice.id); };
-            choiceArea.appendChild(button);
-        });
-        
-        console.log("K-Scale event displayed successfully");
-        return true;
-    } catch (error) {
-        if (window.HyperionErrorHandling) {
-            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
-                action: 'showKScaleEvent',
-                kScale: gameState.currentKScale,
-                eventCounter: gameState.eventCounter
-            });
-            window.HyperionErrorHandling.displayErrorToUser("Error displaying K-Scale event.", null, true);
-        } else {
-            console.error("Error in showKScaleEvent:", error);
-        }
-        return false;
-    }
-}
-
-/**
- * Displays the role change decision at K-Scale milestones
- * @returns {boolean} Whether the display was successful
- */
-export function showRoleChangeDecision() {
-    try {
-        console.log("showRoleChangeDecision called");
-        
-        const choiceArea = document.getElementById("choice-area");
-        const storyArea = document.getElementById("storyArea");
-        
-        console.log("DOM elements:", {
-            choiceArea: choiceArea,
-            storyArea: storyArea
-        });
-        
-        if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for role change decision");
-        }
-        
-        const nextKScale = (gameState.currentKScale + 0.2).toFixed(1);
-        
-        storyArea.innerHTML = `<h3>K-Scale Milestone: ${gameState.currentKScale.toFixed(1)} → ${nextKScale}</h3>
-            <p>Your civilization has reached a significant technological milestone. As capabilities expand, leadership roles may shift.</p>
-            <p>Currently, you serve as: <strong>${gameState.playerRole}</strong></p>
-            <p>Would you like to continue in this role, or transition to a different position?</p>`;
-        
-        choiceArea.innerHTML = "";
-        
-        const continueButton = document.createElement("button");
-        continueButton.className = "choice-button";
-        continueButton.textContent = `Continue as ${gameState.playerRole}`;
-        continueButton.onclick = function() { window.handleChoice("continue_role"); };
-        choiceArea.appendChild(continueButton);
-        
-        if (gameState.playerRole === "Captain") {
-            const changeButton = document.createElement("button");
-            changeButton.className = "choice-button";
-            changeButton.textContent = "Transition to Civilization Leader";
-            changeButton.onclick = function() { window.handleChoice("change_to_civ_leader"); };
-            choiceArea.appendChild(changeButton);
-        } else if (gameState.playerRole === "Civilization Leader") {
-            const changeButton = document.createElement("button");
-            changeButton.className = "choice-button";
-            changeButton.textContent = "Transition to Starship Captain";
-            changeButton.onclick = function() { window.handleChoice("change_to_captain"); };
-            choiceArea.appendChild(changeButton);
-        }
-        
-        console.log("Role change decision displayed successfully");
-        return true;
-    } catch (error) {
-        if (window.HyperionErrorHandling) {
-            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showRoleChangeDecision' });
-            window.HyperionErrorHandling.displayErrorToUser("Error displaying role change decision.", null, true);
-        } else {
-            console.error("Error in showRoleChangeDecision:", error);
-        }
-        return false;
-    }
-}
-
-/**
- * Displays the game end screen
- * @param {string} reason - The reason for game end
- * @returns {boolean} Whether the display was successful
- */
-export function showGameEnd(reason) {
-    try {
-        console.log("showGameEnd called");
-        
-        const choiceArea = document.getElementById("choice-area");
-        const storyArea = document.getElementById("storyArea");
-        
-        console.log("DOM elements:", {
-            choiceArea: choiceArea,
-            storyArea: storyArea
-        });
-        
-        if (!choiceArea || !storyArea) {
-            throw new Error("UI elements missing for game end");
-        }
-        
-        const topPathways = getTopCulturalPathways();
-        let civilizationDescription = "Your civilization has been shaped by your choices. ";
-        
-        if (topPathways.length > 0) {
-            const dominantPath = topPathways[0].name;
-            
-            if (dominantPath === "science") {
-                civilizationDescription += "It has become known throughout the galaxy for its scientific achievements and contributions to knowledge.";
-            } else if (dominantPath === "military") {
-                civilizationDescription += "It has established itself as a formidable power, respected and sometimes feared for its military capabilities.";
-            } else if (dominantPath === "ecological") {
-                civilizationDescription += "It has pioneered sustainable approaches to interstellar expansion, preserving and enhancing the environments it encounters.";
-            } else if (dominantPath === "subversive") {
-                civilizationDescription += "It has developed a reputation for unconventional approaches and adaptability in the face of challenges.";
-            } else if (dominantPath === "psychic") {
-                civilizationDescription += "It has unlocked new dimensions of consciousness, exploring the universe through both technology and mind.";
-            }
-        }
-        
-        storyArea.innerHTML = `<h3>Journey Complete</h3>
-            <p>${reason}</p>
-            <p>${civilizationDescription}</p>
-            <p>Thank you for playing Hyperion Nexus. Your choices have created a unique story of interstellar exploration and development.</p>`;
-        
-        choiceArea.innerHTML = "";
-        
-        const restartButton = document.createElement("button");
-        restartButton.className = "choice-button";
-        restartButton.textContent = "Start New Game";
-        restartButton.onclick = function() { 
-            if (confirm("Are you sure you want to start a new game? All progress will be lost.")) {
-                localStorage.removeItem('hyperionNexusGameState');
-                window.initializeGame();
-            }
-        };
-        choiceArea.appendChild(restartButton);
-        
-        const downloadButton = document.createElement("button");
-        downloadButton.className = "choice-button";
-        downloadButton.textContent = "Download Journey Log";
-        downloadButton.onclick = function() { window.downloadChoiceHistoryCSV(); };
-        choiceArea.appendChild(downloadButton);
-        
-        console.log("Game end displayed successfully");
-        return true;
-    } catch (error) {
-        if (window.HyperionErrorHandling) {
-            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showGameEnd' });
-            window.HyperionErrorHandling.displayErrorToUser("Error displaying game end screen.", null, true);
-        } else {
-            console.error("Error in showGameEnd:", error);
-        }
-        return false;
-    }
-}
-
-// Explicitly assign all exports to window object for global access
+// Make functions available globally
 window.showSpeciesCreationQuestion = showSpeciesCreationQuestion;
 window.showSpeciesSummary = showSpeciesSummary;
 window.showStarshipCreationQuestion = showStarshipCreationQuestion;
 window.showStarshipSummary = showStarshipSummary;
 window.showRoleSelectionInitial = showRoleSelectionInitial;
-window.showKScaleEvent = showKScaleEvent;
-window.showRoleChangeDecision = showRoleChangeDecision;
-window.showGameEnd = showGameEnd;
 
 // Log that phaseManager module has been loaded
 console.log("phaseManager module loaded, functions available:", {
@@ -575,8 +654,5 @@ console.log("phaseManager module loaded, functions available:", {
     showSpeciesSummary: typeof window.showSpeciesSummary,
     showStarshipCreationQuestion: typeof window.showStarshipCreationQuestion,
     showStarshipSummary: typeof window.showStarshipSummary,
-    showRoleSelectionInitial: typeof window.showRoleSelectionInitial,
-    showKScaleEvent: typeof window.showKScaleEvent,
-    showRoleChangeDecision: typeof window.showRoleChangeDecision,
-    showGameEnd: typeof window.showGameEnd
+    showRoleSelectionInitial: typeof window.showRoleSelectionInitial
 });
