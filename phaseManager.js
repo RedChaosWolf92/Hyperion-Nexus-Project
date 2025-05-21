@@ -14,8 +14,15 @@ import { gameState, getTopCulturalPathways } from './gameState.js';
  */
 export function showSpeciesCreationQuestion() {
     try {
+        console.log("showSpeciesCreationQuestion called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
         
         if (!choiceArea || !storyArea) {
             throw new Error("UI elements missing for species creation question");
@@ -43,6 +50,7 @@ export function showSpeciesCreationQuestion() {
             choiceArea.appendChild(button);
         });
         
+        console.log("Species creation question displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
@@ -64,9 +72,17 @@ export function showSpeciesCreationQuestion() {
  */
 export function showSpeciesSummary() {
     try {
+        console.log("showSpeciesSummary called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         const gameOutput = document.getElementById("game-output");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea,
+            gameOutput: gameOutput
+        });
         
         if (!choiceArea || !storyArea || !gameOutput) {
             throw new Error("UI elements missing for species summary");
@@ -107,6 +123,7 @@ export function showSpeciesSummary() {
         };
         choiceArea.appendChild(button);
         
+        console.log("Species summary displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
@@ -125,8 +142,15 @@ export function showSpeciesSummary() {
  */
 export function showStarshipCreationQuestion() {
     try {
+        console.log("showStarshipCreationQuestion called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
         
         if (!choiceArea || !storyArea) {
             throw new Error("UI elements missing for starship creation question");
@@ -177,6 +201,7 @@ export function showStarshipCreationQuestion() {
             });
         }
         
+        console.log("Starship creation question displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
@@ -198,9 +223,17 @@ export function showStarshipCreationQuestion() {
  */
 export function showStarshipSummary() {
     try {
+        console.log("showStarshipSummary called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
         const gameOutput = document.getElementById("game-output");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea,
+            gameOutput: gameOutput
+        });
         
         if (!choiceArea || !storyArea || !gameOutput) {
             throw new Error("UI elements missing for starship summary");
@@ -240,6 +273,7 @@ export function showStarshipSummary() {
         };
         choiceArea.appendChild(button);
         
+        console.log("Starship summary displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
@@ -258,8 +292,15 @@ export function showStarshipSummary() {
  */
 export function showRoleSelectionInitial() {
     try {
+        console.log("showRoleSelectionInitial called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
         
         if (!choiceArea || !storyArea) {
             throw new Error("UI elements missing for role selection");
@@ -294,6 +335,7 @@ export function showRoleSelectionInitial() {
         leaderButton.onclick = function() { window.handleChoice("civ_leader"); };
         choiceArea.appendChild(leaderButton);
         
+        console.log("Role selection displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
@@ -312,8 +354,15 @@ export function showRoleSelectionInitial() {
  */
 export function showKScaleEvent() {
     try {
+        console.log("showKScaleEvent called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
+        
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
         
         if (!choiceArea || !storyArea) {
             throw new Error("UI elements missing for K-Scale event");
@@ -341,7 +390,7 @@ export function showKScaleEvent() {
             roleSpecificIntro = "<p>As leader of your civilization, you must decide:</p>";
         }
         
-        storyArea.innerHTML = `<h3>K-Scale ${gameState.currentKScale.toFixed(1)} - Event ${gameState.eventCounter + 1}/${currentKScaleEvents.length}</h3>
+        storyArea.innerHTML = `<h3>Year ${gameState.gameYear} - K-Scale ${gameState.currentKScale.toFixed(1)}</h3>
             <p>${eventText}</p>
             ${roleSpecificIntro}`;
         
@@ -354,12 +403,13 @@ export function showKScaleEvent() {
             choiceArea.appendChild(button);
         });
         
+        console.log("K-Scale event displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
                 action: 'showKScaleEvent',
-                kScale: gameState.currentKScale.toFixed(1),
+                kScale: gameState.currentKScale,
                 eventCounter: gameState.eventCounter
             });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying K-Scale event.", null, true);
@@ -376,29 +426,26 @@ export function showKScaleEvent() {
  */
 export function showRoleChangeDecision() {
     try {
+        console.log("showRoleChangeDecision called");
+        
         const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
-        const gameOutput = document.getElementById("game-output");
         
-        if (!choiceArea || !storyArea || !gameOutput) {
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
+        
+        if (!choiceArea || !storyArea) {
             throw new Error("UI elements missing for role change decision");
         }
         
         const nextKScale = (gameState.currentKScale + 0.2).toFixed(1);
         
-        storyArea.innerHTML = `<h3>K-Scale Milestone Reached</h3>
-            <p>Your civilization has completed a significant phase of development at K-Scale ${gameState.currentKScale.toFixed(1)}.</p>
-            <p>As you prepare to advance to K-Scale ${nextKScale}, you have the opportunity to reconsider your role.</p>
-            <div class="role-cards">
-                <div class="role-card ${gameState.playerRole === "Captain" ? "selected" : ""}">
-                    <h4>Starship Captain</h4>
-                    <p>Command the ${gameState.starshipName} directly, making tactical decisions and leading from the front lines of exploration.</p>
-                </div>
-                <div class="role-card ${gameState.playerRole === "Civilization Leader" ? "selected" : ""}">
-                    <h4>Civilization Leader</h4>
-                    <p>Guide your entire civilization's development, making strategic decisions about research, expansion, and diplomacy.</p>
-                </div>
-            </div>`;
+        storyArea.innerHTML = `<h3>K-Scale Milestone: ${gameState.currentKScale.toFixed(1)} → ${nextKScale}</h3>
+            <p>Your civilization has reached a significant technological milestone. As capabilities expand, leadership roles may shift.</p>
+            <p>Currently, you serve as: <strong>${gameState.playerRole}</strong></p>
+            <p>Would you like to continue in this role, or transition to a different position?</p>`;
         
         choiceArea.innerHTML = "";
         
@@ -408,30 +455,25 @@ export function showRoleChangeDecision() {
         continueButton.onclick = function() { window.handleChoice("continue_role"); };
         choiceArea.appendChild(continueButton);
         
-        if (gameState.playerRole !== "Captain") {
-            const captainButton = document.createElement("button");
-            captainButton.className = "choice-button";
-            captainButton.textContent = "Change to Captain";
-            captainButton.onclick = function() { window.handleChoice("change_to_captain"); };
-            choiceArea.appendChild(captainButton);
+        if (gameState.playerRole === "Captain") {
+            const changeButton = document.createElement("button");
+            changeButton.className = "choice-button";
+            changeButton.textContent = "Transition to Civilization Leader";
+            changeButton.onclick = function() { window.handleChoice("change_to_civ_leader"); };
+            choiceArea.appendChild(changeButton);
+        } else if (gameState.playerRole === "Civilization Leader") {
+            const changeButton = document.createElement("button");
+            changeButton.className = "choice-button";
+            changeButton.textContent = "Transition to Starship Captain";
+            changeButton.onclick = function() { window.handleChoice("change_to_captain"); };
+            choiceArea.appendChild(changeButton);
         }
         
-        if (gameState.playerRole !== "Civilization Leader") {
-            const leaderButton = document.createElement("button");
-            leaderButton.className = "choice-button";
-            leaderButton.textContent = "Change to Civilization Leader";
-            leaderButton.onclick = function() { window.handleChoice("change_to_civ_leader"); };
-            choiceArea.appendChild(leaderButton);
-        }
-        
+        console.log("Role change decision displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
-            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { 
-                action: 'showRoleChangeDecision',
-                currentRole: gameState.playerRole,
-                kScale: gameState.currentKScale.toFixed(1)
-            });
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showRoleChangeDecision' });
             window.HyperionErrorHandling.displayErrorToUser("Error displaying role change decision.", null, true);
         } else {
             console.error("Error in showRoleChangeDecision:", error);
@@ -441,119 +483,100 @@ export function showRoleChangeDecision() {
 }
 
 /**
- * Displays the game end screen with results and visualization
+ * Displays the game end screen
+ * @param {string} reason - The reason for game end
  * @returns {boolean} Whether the display was successful
  */
-export function showGameEnd() {
+export function showGameEnd(reason) {
     try {
+        console.log("showGameEnd called");
+        
+        const choiceArea = document.getElementById("choice-area");
         const storyArea = document.getElementById("storyArea");
-        const resultsArea = document.getElementById("results-area");
-        const downloadLogButton = document.getElementById("download-log-button");
         
-        if (!storyArea || !resultsArea) {
-            throw new Error("UI elements missing for game end display");
+        console.log("DOM elements:", {
+            choiceArea: choiceArea,
+            storyArea: storyArea
+        });
+        
+        if (!choiceArea || !storyArea) {
+            throw new Error("UI elements missing for game end");
         }
         
-        if (resultsArea) resultsArea.style.display = "block";
-        if (downloadLogButton) downloadLogButton.style.display = "inline-block";
-        
-        // Display final results
         const topPathways = getTopCulturalPathways();
-        let dominantPath = topPathways[0].name;
+        let civilizationDescription = "Your civilization has been shaped by your choices. ";
         
-        if (storyArea) {
-            storyArea.innerHTML = `<h3>Your Civilization's Journey is Complete</h3>
-            <p>After years of exploration and development, your civilization has reached K-Scale ${gameState.currentKScale.toFixed(1)}.</p>
-            <p>Dominant Cultural Pathway: <strong>${dominantPath.charAt(0).toUpperCase() + dominantPath.slice(1)}</strong></p>
-            <p>Total Years: ${gameState.gameYear}</p>
-            <p>Download your journey log to see the full history of your decisions and their impacts.</p>`;
-        }
-        
-        // Create a simple visualization of cultural pathway development
-        const resultsDiv = document.getElementById("results-visualization");
-        if (resultsDiv) {
-            let pathwayData = gameState.choiceHistory.map((entry, index) => {
-                return {
-                    index: index,
-                    science: entry.pathwaysAfter.science,
-                    military: entry.pathwaysAfter.military,
-                    ecological: entry.pathwaysAfter.ecological,
-                    subversive: entry.pathwaysAfter.subversive,
-                    psychic: entry.pathwaysAfter.psychic
-                };
-            });
+        if (topPathways.length > 0) {
+            const dominantPath = topPathways[0].name;
             
-            if (pathwayData.length > 0) {
-                let svgWidth = 600;
-                let svgHeight = 400;
-                let margin = { top: 20, right: 20, bottom: 30, left: 40 };
-                let width = svgWidth - margin.left - margin.right;
-                let height = svgHeight - margin.top - margin.bottom;
-                
-                // Find the maximum value for scaling
-                let maxValue = 0;
-                pathwayData.forEach(d => {
-                    maxValue = Math.max(maxValue, d.science, d.military, d.ecological, d.subversive, d.psychic);
-                });
-                
-                // Create SVG
-                let svg = `<svg width="${svgWidth}" height="${svgHeight}">
-                    <g transform="translate(${margin.left},${margin.top})">`;
-                
-                // Add axes
-                svg += `<line x1="0" y1="${height}" x2="${width}" y2="${height}" stroke="black" />
-                    <line x1="0" y1="0" x2="0" y2="${height}" stroke="black" />`;
-                
-                // X-axis labels
-                svg += `<text x="${width/2}" y="${height + 25}" text-anchor="middle">Decision Points</text>`;
-                
-                // Y-axis labels
-                svg += `<text transform="rotate(-90)" x="${-height/2}" y="-30" text-anchor="middle">Pathway Strength</text>`;
-                
-                // Calculate scales
-                let xScale = width / (pathwayData.length - 1 || 1);
-                let yScale = height / (maxValue || 1);
-                
-                // Draw lines for each pathway
-                const pathways = [
-                    { name: "science", color: "blue" },
-                    { name: "military", color: "red" },
-                    { name: "ecological", color: "green" },
-                    { name: "subversive", color: "black" },
-                    { name: "psychic", color: "purple" }
-                ];
-                
-                pathways.forEach(pathway => {
-                    let pathData = `M0,${height - pathwayData[0][pathway.name] * yScale}`;
-                    
-                    for (let i = 1; i < pathwayData.length; i++) {
-                        pathData += ` L${i * xScale},${height - pathwayData[i][pathway.name] * yScale}`;
-                    }
-                    
-                    svg += `<path d="${pathData}" fill="none" stroke="${pathway.color}" stroke-width="2" />`;
-                });
-                
-                // Add legend
-                let legendY = 10;
-                pathways.forEach(pathway => {
-                    svg += `<line x1="${width - 100}" x2="${width - 80}" y1="${legendY}" y2="${legendY}" stroke="${pathway.color}" stroke-width="2" />
-                        <text x="${width - 75}" y="${legendY + 5}" font-size="12">${pathway.name.charAt(0).toUpperCase() + pathway.name.slice(1)}</text>`;
-                    legendY += 20;
-                });
-                
-                svg += `</g></svg>`;
-                resultsDiv.innerHTML = svg;
+            if (dominantPath === "science") {
+                civilizationDescription += "It has become known throughout the galaxy for its scientific achievements and contributions to knowledge.";
+            } else if (dominantPath === "military") {
+                civilizationDescription += "It has established itself as a formidable power, respected and sometimes feared for its military capabilities.";
+            } else if (dominantPath === "ecological") {
+                civilizationDescription += "It has pioneered sustainable approaches to interstellar expansion, preserving and enhancing the environments it encounters.";
+            } else if (dominantPath === "subversive") {
+                civilizationDescription += "It has developed a reputation for unconventional approaches and adaptability in the face of challenges.";
+            } else if (dominantPath === "psychic") {
+                civilizationDescription += "It has unlocked new dimensions of consciousness, exploring the universe through both technology and mind.";
             }
         }
         
+        storyArea.innerHTML = `<h3>Journey Complete</h3>
+            <p>${reason}</p>
+            <p>${civilizationDescription}</p>
+            <p>Thank you for playing Hyperion Nexus. Your choices have created a unique story of interstellar exploration and development.</p>`;
+        
+        choiceArea.innerHTML = "";
+        
+        const restartButton = document.createElement("button");
+        restartButton.className = "choice-button";
+        restartButton.textContent = "Start New Game";
+        restartButton.onclick = function() { 
+            if (confirm("Are you sure you want to start a new game? All progress will be lost.")) {
+                localStorage.removeItem('hyperionNexusGameState');
+                window.initializeGame();
+            }
+        };
+        choiceArea.appendChild(restartButton);
+        
+        const downloadButton = document.createElement("button");
+        downloadButton.className = "choice-button";
+        downloadButton.textContent = "Download Journey Log";
+        downloadButton.onclick = function() { window.downloadChoiceHistoryCSV(); };
+        choiceArea.appendChild(downloadButton);
+        
+        console.log("Game end displayed successfully");
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.UI, { action: 'showGameEnd' });
-            window.HyperionErrorHandling.displayErrorToUser("Error displaying game end screen.", null, false);
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying game end screen.", null, true);
         } else {
             console.error("Error in showGameEnd:", error);
         }
         return false;
     }
 }
+
+// Explicitly assign all exports to window object for global access
+window.showSpeciesCreationQuestion = showSpeciesCreationQuestion;
+window.showSpeciesSummary = showSpeciesSummary;
+window.showStarshipCreationQuestion = showStarshipCreationQuestion;
+window.showStarshipSummary = showStarshipSummary;
+window.showRoleSelectionInitial = showRoleSelectionInitial;
+window.showKScaleEvent = showKScaleEvent;
+window.showRoleChangeDecision = showRoleChangeDecision;
+window.showGameEnd = showGameEnd;
+
+// Log that phaseManager module has been loaded
+console.log("phaseManager module loaded, functions available:", {
+    showSpeciesCreationQuestion: typeof window.showSpeciesCreationQuestion,
+    showSpeciesSummary: typeof window.showSpeciesSummary,
+    showStarshipCreationQuestion: typeof window.showStarshipCreationQuestion,
+    showStarshipSummary: typeof window.showStarshipSummary,
+    showRoleSelectionInitial: typeof window.showRoleSelectionInitial,
+    showKScaleEvent: typeof window.showKScaleEvent,
+    showRoleChangeDecision: typeof window.showRoleChangeDecision,
+    showGameEnd: typeof window.showGameEnd
+});

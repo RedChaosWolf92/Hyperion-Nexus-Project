@@ -266,6 +266,14 @@ export function initializeGame() {
         window.displayCurrentState();
         window.updateStatusBar();
         
+        // After initialization, explicitly call showSpeciesCreationQuestion
+        if (typeof window.showSpeciesCreationQuestion === 'function') {
+            console.log("Calling showSpeciesCreationQuestion after initialization");
+            window.showSpeciesCreationQuestion();
+        } else {
+            console.error("showSpeciesCreationQuestion function not available");
+        }
+        
         if (debugLog) debugLog.innerHTML += "DEBUG: Game initialization complete. First question should be visible.<br>";
         
         return true;
@@ -327,30 +335,111 @@ export function downloadChoiceHistoryCSV() {
                 pathwaysAfter.subversive || 0,
                 pathwaysAfter.psychic || 0
             ];
+            
             csvContent += row.join(",") + "\r\n";
         });
-
+        
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "hyperion_nexus_game_log.csv");
-        document.body.appendChild(link); 
+        link.setAttribute("download", `hyperion_nexus_history_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        
         link.click();
         document.body.removeChild(link);
         
         const gameOutput = document.getElementById("game-output");
-        if(gameOutput) gameOutput.innerHTML += "<br>Game log download initiated.";
+        if(gameOutput) gameOutput.innerHTML += "<br><span style='color:green;'>History downloaded successfully.</span>";
         
         return true;
     } catch (error) {
         if (window.HyperionErrorHandling) {
             window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.DATA, { action: 'downloadChoiceHistoryCSV' });
-            window.HyperionErrorHandling.displayErrorToUser("Error downloading game history.", null, false);
+            window.HyperionErrorHandling.displayErrorToUser("Error downloading history. Please try again.", null, false);
         } else {
             console.error("Error in downloadChoiceHistoryCSV:", error);
             const gameOutput = document.getElementById("game-output");
-            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error downloading game history.</span><br>";
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error downloading history. Please try again.</span><br>";
         }
         return false;
     }
 }
+
+/**
+ * Ends the game and displays final results
+ * @param {string} reason - The reason for game end
+ */
+export function endGame(reason) {
+    try {
+        const gameOutput = document.getElementById("game-output");
+        const resultsArea = document.getElementById("results-area");
+        const resultsVisualization = document.getElementById("results-visualization");
+        const downloadLogButton = document.getElementById("download-log-button");
+        
+        if (!gameOutput || !resultsArea || !resultsVisualization || !downloadLogButton) {
+            throw new Error("One or more UI elements missing for game end");
+        }
+        
+        gameState.gamePhase = "game_end";
+        
+        if(gameOutput) gameOutput.innerHTML += `<br><b>Game End: ${reason}</b><br>`;
+        
+        // Display results
+        if(resultsArea) resultsArea.style.display = 'block';
+        if(downloadLogButton) downloadLogButton.style.display = 'inline-block';
+        
+        // Create a simple visualization of cultural pathways
+        if(resultsVisualization) {
+            let html = "<h4>Final Cultural Pathway Values:</h4>";
+            html += "<div style='display: flex; flex-wrap: wrap; gap: 10px;'>";
+            
+            for (const [pathway, value] of Object.entries(gameState.culturalPathways)) {
+                const percentage = Math.min(100, Math.max(0, value)) / 100;
+                const width = Math.max(50, percentage * 200);
+                
+                html += `
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="font-weight: bold; text-transform: capitalize;">${pathway}: ${value}</div>
+                    <div style="background-color: #eee; height: 20px; width: 200px; margin: 5px 0;">
+                        <div style="background-color: #4a90e2; height: 100%; width: ${width}px;"></div>
+                    </div>
+                </div>`;
+            }
+            
+            html += "</div>";
+            
+            // Add choice history summary
+            html += "<h4>Journey Summary:</h4>";
+            html += "<ul>";
+            gameState.choiceHistory.forEach(entry => {
+                html += `<li>Year ${entry.year}: ${entry.choiceText}</li>`;
+            });
+            html += "</ul>";
+            
+            resultsVisualization.innerHTML = html;
+        }
+        
+        return true;
+    } catch (error) {
+        if (window.HyperionErrorHandling) {
+            window.HyperionErrorHandling.logError(error, window.HyperionErrorHandling.ErrorType.GAME_STATE, { action: 'endGame' });
+            window.HyperionErrorHandling.displayErrorToUser("Error displaying game results.", null, true);
+        } else {
+            console.error("Error in endGame:", error);
+            const gameOutput = document.getElementById("game-output");
+            if(gameOutput) gameOutput.innerHTML += "<span style='color:red;'>Error displaying game results.</span><br>";
+        }
+        return false;
+    }
+}
+
+// Explicitly assign all exports to window object for global access
+window.gameState = gameState;
+window.getTopCulturalPathways = getTopCulturalPathways;
+window.handleChoice = handleChoice;
+window.initializeGame = initializeGame;
+window.downloadChoiceHistoryCSV = downloadChoiceHistoryCSV;
+window.endGame = endGame;
+
+// Log that gameState module has been loaded
+console.log("gameState module loaded, gameState object:", window.gameState);
