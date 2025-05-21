@@ -122,7 +122,7 @@
         <!-- Added game-choices div to match the clearGameUI function -->
         <div id="game-choices">
             <div id="choice-area">
-                <button id="start-button" class="choice-button">Begin Your Journey</button>
+                <button id="start-button" class="choice-button" onclick="if(typeof window.initializeGame === 'function') { window.initializeGame(); } else { console.error('initializeGame not found'); }">Begin Your Journey</button>
             </div>
         </div>
         
@@ -142,7 +142,65 @@
     <!-- Load error handling module first -->
     <script src="errorHandling.js"></script>
     
-    <!-- Load game state module -->
-    <script type="module" src="hyperion_nexus_game.js"></script>
+    <!-- Load all game scripts in the correct order -->
+    <script src="gameData.js"></script>
+    <script src="gameState.js"></script>
+    <script src="phaseManager.js"></script>
+    <script src="uiManager.js"></script>
+    <script src="hyperion_nexus_game.js"></script>
+    
+    <!-- Fallback initialization script -->
+    <script>
+        // Ensure the start button has a click handler
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded, setting up start button');
+            const startButton = document.getElementById('start-button');
+            if (startButton) {
+                console.log('Found start button, attaching click handler');
+                startButton.onclick = function() {
+                    console.log('Start button clicked');
+                    if (typeof window.initializeGame === 'function') {
+                        window.initializeGame();
+                    } else {
+                        console.error('initializeGame function not available');
+                        alert('Game initialization failed. Please refresh the page and try again.');
+                    }
+                };
+            } else {
+                console.error('Start button not found');
+            }
+        });
+        
+        // Fallback initialization if DOMContentLoaded already fired
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            console.log('DOM already loaded, initializing button with fallback');
+            setTimeout(function() {
+                const startButton = document.getElementById('start-button');
+                if (startButton) {
+                    console.log('Found start button in fallback, attaching click handler');
+                    startButton.onclick = function() {
+                        console.log('Start button clicked in fallback');
+                        try {
+                            // Try to initialize directly
+                            if (typeof initializeGame === 'function') {
+                                initializeGame();
+                            } else {
+                                // Try to access from window object
+                                if (typeof window.initializeGame === 'function') {
+                                    window.initializeGame();
+                                } else {
+                                    console.error('initializeGame function not available in fallback');
+                                    alert('Game initialization failed. Please refresh the page and try again.');
+                                }
+                            }
+                        } catch (error) {
+                            console.error('Error in fallback initialization:', error);
+                            alert('Game initialization failed. Please refresh the page and try again.');
+                        }
+                    };
+                }
+            }, 100);
+        }
+    </script>
 </body>
 </html>

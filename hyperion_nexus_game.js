@@ -4,73 +4,103 @@
 /* for the Hyperion Nexus game.                                             */
 /****************************************************************************/
 
-// Import game state and core logic from gameState.js module
-import { gameState, initializeGame, handleChoice, getTopCulturalPathways, downloadChoiceHistoryCSV, transitionGamePhase, ensureDOMStructure, createRestartButton } from './gameState.js';
-
-// Import phase management functions from phaseManager.js module
-import { 
-    showSpeciesCreationQuestion,
-    showSpeciesSummary,
-    showStarshipCreationQuestion,
-    showStarshipSummary,
-    showRoleSelectionInitial,
-    showKScaleEvent,
-    showRoleChangeDecision,
-    showGameEnd
-} from './phaseManager.js';
-
-// Import game data structures from gameData.js module
-import {
-    playerRoles,
-    speciesCreationQuestions,
-    starshipCreationQuestions,
-    kScaleEvents
-} from './gameData.js';
-
-// Import UI management functions from uiManager.js module
-import {
-    clearGameUI,
-    displayCurrentState,
-    updateStatusBar,
-    setupUIEventListeners,
-    handleSavedGameRestoration
-} from './uiManager.js';
-
 // Log that the main game module is loading
 console.log("Hyperion Nexus Game module loading");
 
-// Make core functions available to the global scope for HTML event handlers
-window.initializeGame = initializeGame;
-window.handleChoice = handleChoice;
-window.downloadChoiceHistoryCSV = downloadChoiceHistoryCSV;
-window.getTopCulturalPathways = getTopCulturalPathways;
-window.transitionGamePhase = transitionGamePhase;
-window.ensureDOMStructure = ensureDOMStructure;
-window.createRestartButton = createRestartButton;
+// Define global variables to store imported values
+let gameState, initializeGame, handleChoice, getTopCulturalPathways, downloadChoiceHistoryCSV, 
+    transitionGamePhase, ensureDOMStructure, createRestartButton;
+let showSpeciesCreationQuestion, showSpeciesSummary, showStarshipCreationQuestion, 
+    showStarshipSummary, showRoleSelectionInitial, showKScaleEvent, 
+    showRoleChangeDecision, showGameEnd;
+let playerRoles, speciesCreationQuestions, starshipCreationQuestions, kScaleEvents;
+let clearGameUI, displayCurrentState, updateStatusBar, setupUIEventListeners, handleSavedGameRestoration;
 
-// Make phase management functions available to the global scope
-window.showSpeciesCreationQuestion = showSpeciesCreationQuestion;
-window.showSpeciesSummary = showSpeciesSummary;
-window.showStarshipCreationQuestion = showStarshipCreationQuestion;
-window.showStarshipSummary = showStarshipSummary;
-window.showRoleSelectionInitial = showRoleSelectionInitial;
-window.showKScaleEvent = showKScaleEvent;
-window.showRoleChangeDecision = showRoleChangeDecision;
-window.showGameEnd = showGameEnd;
-
-// Make data structures available to the gameState module
-window.playerRoles = playerRoles;
-window.speciesCreationQuestions = speciesCreationQuestions;
-window.starshipCreationQuestions = starshipCreationQuestions;
-window.kScaleEvents = kScaleEvents;
-
-// Make UI utility functions available to other modules
-window.clearGameUI = clearGameUI;
-window.displayCurrentState = () => displayCurrentState(window.gameState || gameState);
-window.updateStatusBar = () => updateStatusBar(window.gameState || gameState, window.getTopCulturalPathways || getTopCulturalPathways);
-
-// Make gameState available globally
-window.gameState = gameState;
+// Function to initialize global variables from imported modules
+function initializeGlobals() {
+    try {
+        console.log("Initializing global variables");
+        
+        // Check if modules are loaded and assign their exports to global variables
+        if (typeof window.gameStateModule !== 'undefined') {
+            gameState = window.gameStateModule.gameState;
+            initializeGame = window.gameStateModule.initializeGame;
+            handleChoice = window.gameStateModule.handleChoice;
+            getTopCulturalPathways = window.gameStateModule.getTopCulturalPathways;
+            downloadChoiceHistoryCSV = window.gameStateModule.downloadChoiceHistoryCSV;
+            transitionGamePhase = window.gameStateModule.transitionGamePhase;
+            ensureDOMStructure = window.gameStateModule.ensureDOMStructure;
+            createRestartButton = window.gameStateModule.createRestartButton;
+        }
+        
+        if (typeof window.phaseManagerModule !== 'undefined') {
+            showSpeciesCreationQuestion = window.phaseManagerModule.showSpeciesCreationQuestion;
+            showSpeciesSummary = window.phaseManagerModule.showSpeciesSummary;
+            showStarshipCreationQuestion = window.phaseManagerModule.showStarshipCreationQuestion;
+            showStarshipSummary = window.phaseManagerModule.showStarshipSummary;
+            showRoleSelectionInitial = window.phaseManagerModule.showRoleSelectionInitial;
+            showKScaleEvent = window.phaseManagerModule.showKScaleEvent;
+            showRoleChangeDecision = window.phaseManagerModule.showRoleChangeDecision;
+            showGameEnd = window.phaseManagerModule.showGameEnd;
+        }
+        
+        if (typeof window.gameDataModule !== 'undefined') {
+            playerRoles = window.gameDataModule.playerRoles;
+            speciesCreationQuestions = window.gameDataModule.speciesCreationQuestions;
+            starshipCreationQuestions = window.gameDataModule.starshipCreationQuestions;
+            kScaleEvents = window.gameDataModule.kScaleEvents;
+        }
+        
+        if (typeof window.uiManagerModule !== 'undefined') {
+            clearGameUI = window.uiManagerModule.clearGameUI;
+            displayCurrentState = window.uiManagerModule.displayCurrentState;
+            updateStatusBar = window.uiManagerModule.updateStatusBar;
+            setupUIEventListeners = window.uiManagerModule.setupUIEventListeners;
+            handleSavedGameRestoration = window.uiManagerModule.handleSavedGameRestoration;
+        }
+        
+        // Make core functions available to the global scope for HTML event handlers
+        window.initializeGame = initializeGame || window.initializeGame;
+        window.handleChoice = handleChoice || window.handleChoice;
+        window.downloadChoiceHistoryCSV = downloadChoiceHistoryCSV || window.downloadChoiceHistoryCSV;
+        window.getTopCulturalPathways = getTopCulturalPathways || window.getTopCulturalPathways;
+        window.transitionGamePhase = transitionGamePhase || window.transitionGamePhase;
+        window.ensureDOMStructure = ensureDOMStructure || window.ensureDOMStructure;
+        window.createRestartButton = createRestartButton || window.createRestartButton;
+        
+        // Make phase management functions available to the global scope
+        window.showSpeciesCreationQuestion = showSpeciesCreationQuestion || window.showSpeciesCreationQuestion;
+        window.showSpeciesSummary = showSpeciesSummary || window.showSpeciesSummary;
+        window.showStarshipCreationQuestion = showStarshipCreationQuestion || window.showStarshipCreationQuestion;
+        window.showStarshipSummary = showStarshipSummary || window.showStarshipSummary;
+        window.showRoleSelectionInitial = showRoleSelectionInitial || window.showRoleSelectionInitial;
+        window.showKScaleEvent = showKScaleEvent || window.showKScaleEvent;
+        window.showRoleChangeDecision = showRoleChangeDecision || window.showRoleChangeDecision;
+        window.showGameEnd = showGameEnd || window.showGameEnd;
+        
+        // Make data structures available to the gameState module
+        window.playerRoles = playerRoles || window.playerRoles;
+        window.speciesCreationQuestions = speciesCreationQuestions || window.speciesCreationQuestions;
+        window.starshipCreationQuestions = starshipCreationQuestions || window.starshipCreationQuestions;
+        window.kScaleEvents = kScaleEvents || window.kScaleEvents;
+        
+        // Make UI utility functions available to other modules
+        window.clearGameUI = clearGameUI || window.clearGameUI;
+        window.displayCurrentState = displayCurrentState || window.displayCurrentState || 
+            (() => { if (typeof window.displayCurrentState === 'function') window.displayCurrentState(window.gameState); });
+        window.updateStatusBar = updateStatusBar || window.updateStatusBar || 
+            (() => { if (typeof window.updateStatusBar === 'function') window.updateStatusBar(window.gameState); });
+        
+        // Make gameState available globally
+        window.gameState = gameState || window.gameState;
+        
+        console.log("Global variables initialized successfully");
+        return true;
+    } catch (error) {
+        console.error("Error initializing global variables:", error);
+        return false;
+    }
+}
 
 /**
  * Function to end the game and display final results
@@ -97,13 +127,15 @@ window.endGame = function(reason) {
         }
         
         // Update game state
-        gameState.gamePhase = "game_end";
+        if (window.gameState) {
+            window.gameState.gamePhase = "game_end";
+        }
         
         // Display end game message
         storyArea.innerHTML = `<h2>Journey Complete</h2>
             <p>${reason}</p>
-            <p>Your civilization has reached a K-Scale of ${gameState.currentKScale.toFixed(1)}, 
-            spanning ${gameState.gameYear} years of development.</p>`;
+            <p>Your civilization has reached a K-Scale of ${window.gameState ? window.gameState.currentKScale.toFixed(1) : '0.0'}, 
+            spanning ${window.gameState ? window.gameState.gameYear : '0'} years of development.</p>`;
         
         // Clear choice area
         choiceArea.innerHTML = "";
@@ -118,22 +150,25 @@ window.endGame = function(reason) {
             resultsArea.style.display = 'block';
             
             // Generate civilization summary
-            const topPathways = getTopCulturalPathways();
-            let civilizationSummary = "";
+            let civilizationSummary = "Your civilization has completed its journey through the stars.";
             
-            if (topPathways.length > 0) {
-                const dominantPath = topPathways[0].name;
+            if (typeof window.getTopCulturalPathways === 'function') {
+                const topPathways = window.getTopCulturalPathways();
                 
-                if (dominantPath === "science") {
-                    civilizationSummary = "Your civilization has become known for its scientific achievements and technological innovations.";
-                } else if (dominantPath === "military") {
-                    civilizationSummary = "Your civilization has developed into a formidable military power with strong defensive capabilities.";
-                } else if (dominantPath === "ecological") {
-                    civilizationSummary = "Your civilization has pioneered sustainable development and harmonious integration with space environments.";
-                } else if (dominantPath === "subversive") {
-                    civilizationSummary = "Your civilization has mastered unconventional approaches and adaptive strategies for survival.";
-                } else if (dominantPath === "psychic") {
-                    civilizationSummary = "Your civilization has developed unique mental abilities and consciousness-based technologies.";
+                if (topPathways && topPathways.length > 0) {
+                    const dominantPath = topPathways[0].name;
+                    
+                    if (dominantPath === "science") {
+                        civilizationSummary = "Your civilization has become known for its scientific achievements and technological innovations.";
+                    } else if (dominantPath === "military") {
+                        civilizationSummary = "Your civilization has developed into a formidable military power with strong defensive capabilities.";
+                    } else if (dominantPath === "ecological") {
+                        civilizationSummary = "Your civilization has pioneered sustainable development and harmonious integration with space environments.";
+                    } else if (dominantPath === "subversive") {
+                        civilizationSummary = "Your civilization has mastered unconventional approaches and adaptive strategies for survival.";
+                    } else if (dominantPath === "psychic") {
+                        civilizationSummary = "Your civilization has developed unique mental abilities and consciousness-based technologies.";
+                    }
                 }
             }
             
@@ -141,14 +176,14 @@ window.endGame = function(reason) {
                 <p>${civilizationSummary}</p>
                 <h3>Cultural Pathway Development</h3>
                 <ul>
-                    <li>Science: ${gameState.culturalPathways.science}</li>
-                    <li>Military: ${gameState.culturalPathways.military}</li>
-                    <li>Ecological: ${gameState.culturalPathways.ecological}</li>
-                    <li>Subversive: ${gameState.culturalPathways.subversive}</li>
-                    <li>Psychic: ${gameState.culturalPathways.psychic}</li>
+                    <li>Science: ${window.gameState ? window.gameState.culturalPathways.science : '0'}</li>
+                    <li>Military: ${window.gameState ? window.gameState.culturalPathways.military : '0'}</li>
+                    <li>Ecological: ${window.gameState ? window.gameState.culturalPathways.ecological : '0'}</li>
+                    <li>Subversive: ${window.gameState ? window.gameState.culturalPathways.subversive : '0'}</li>
+                    <li>Psychic: ${window.gameState ? window.gameState.culturalPathways.psychic : '0'}</li>
                 </ul>
                 <h3>Key Decisions</h3>
-                <p>Total decisions made: ${gameState.choiceHistory.length}</p>`;
+                <p>Total decisions made: ${window.gameState && window.gameState.choiceHistory ? window.gameState.choiceHistory.length : '0'}</p>`;
             
             // Add restart button to results
             const restartButton = document.createElement("button");
@@ -157,7 +192,11 @@ window.endGame = function(reason) {
             restartButton.onclick = function() {
                 if (confirm("Are you sure you want to start a new game? All progress will be lost.")) {
                     localStorage.removeItem('hyperionNexusGameState');
-                    window.initializeGame();
+                    if (typeof window.initializeGame === 'function') {
+                        window.initializeGame();
+                    } else {
+                        window.location.reload();
+                    }
                 }
             };
             resultsArea.appendChild(restartButton);
@@ -165,7 +204,7 @@ window.endGame = function(reason) {
         
         // Add final message to game output
         if (gameOutput) {
-            gameOutput.innerHTML += `<br><b>Game complete!</b> Your civilization's journey has concluded after ${gameState.gameYear} years.<br>`;
+            gameOutput.innerHTML += `<br><b>Game complete!</b> Your civilization's journey has concluded after ${window.gameState ? window.gameState.gameYear : '0'} years.<br>`;
         }
         
         console.log("Game end processed successfully");
@@ -189,7 +228,11 @@ window.endGame = function(reason) {
                 emergencyButton.style.padding = "10px";
                 emergencyButton.onclick = function() {
                     localStorage.removeItem('hyperionNexusGameState');
-                    window.initializeGame();
+                    if (typeof window.initializeGame === 'function') {
+                        window.initializeGame();
+                    } else {
+                        window.location.reload();
+                    }
                 };
                 gameContainer.appendChild(emergencyButton);
             }
@@ -228,7 +271,12 @@ function setupRestartButton() {
                     if (gameOutput) gameOutput.innerHTML = "";
                     
                     // Initialize the game
-                    window.initializeGame();
+                    if (typeof window.initializeGame === 'function') {
+                        window.initializeGame();
+                    } else {
+                        console.error("initializeGame not available for restart");
+                        window.location.reload();
+                    }
                 } catch (error) {
                     console.error("Error during restart:", error);
                     alert("Error restarting game. Please refresh the page to start over.");
@@ -287,9 +335,41 @@ function checkGameState() {
     }
 }
 
+// Function to set up the start button
+function setupStartButton() {
+    console.log("Setting up start button");
+    const startButton = document.getElementById('start-button');
+    if (startButton) {
+        console.log("Start button found, attaching direct handler");
+        startButton.onclick = function() {
+            console.log("Start button clicked (direct handler)");
+            try {
+                // Initialize globals first
+                initializeGlobals();
+                
+                // Then try to initialize game
+                if (typeof window.initializeGame === 'function') {
+                    window.initializeGame();
+                } else {
+                    console.error("initializeGame function not available");
+                    alert("Game initialization failed. Please refresh the page and try again.");
+                }
+            } catch (error) {
+                console.error("Error during game initialization:", error);
+                alert("Error starting game. Please refresh the page and try again.");
+            }
+        };
+    } else {
+        console.warn("Start button not found for direct handler");
+    }
+}
+
 // Initialize the game when the document is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM fully loaded, initializing game");
+    
+    // Initialize global variables
+    initializeGlobals();
     
     // Check for all required DOM elements
     const requiredElements = [
@@ -310,95 +390,75 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("All required DOM elements found");
     }
     
+    // Set up start button
+    setupStartButton();
+    
     // Set up UI event listeners
-    setupUIEventListeners(window.initializeGame || initializeGame);
+    if (typeof window.setupUIEventListeners === 'function') {
+        window.setupUIEventListeners(window.initializeGame);
+    }
     
     // Explicitly set up restart button
     setupRestartButton();
     
     // Check for saved game state in localStorage
-    const gameRestored = handleSavedGameRestoration(
-        window.gameState || gameState, 
-        window.initializeGame || initializeGame, 
-        window.showSpeciesCreationQuestion || showSpeciesCreationQuestion, 
-        window.showSpeciesSummary || showSpeciesSummary, 
-        window.showStarshipCreationQuestion || showStarshipCreationQuestion, 
-        window.showStarshipSummary || showStarshipSummary, 
-        window.showRoleSelectionInitial || showRoleSelectionInitial, 
-        window.showKScaleEvent || showKScaleEvent, 
-        window.showRoleChangeDecision || showRoleChangeDecision, 
-        window.showGameEnd || showGameEnd
-    );
+    let gameRestored = false;
+    if (typeof window.handleSavedGameRestoration === 'function') {
+        gameRestored = window.handleSavedGameRestoration(
+            window.gameState, 
+            window.initializeGame, 
+            window.showSpeciesCreationQuestion, 
+            window.showSpeciesSummary, 
+            window.showStarshipCreationQuestion, 
+            window.showStarshipSummary, 
+            window.showRoleSelectionInitial, 
+            window.showKScaleEvent, 
+            window.showRoleChangeDecision, 
+            window.showGameEnd
+        );
+    }
     
     // Initialize new game if no saved game or user declined to restore
     if (!gameRestored) {
-        console.log("No saved game restored, initializing new game");
-        window.initializeGame();
+        console.log("No saved game restored, waiting for user to click 'Begin Your Journey'");
+        // Game will be initialized when user clicks the start button
     } else {
         // Verify restored game state integrity
         if (!checkGameState()) {
-            console.error("Restored game state failed integrity check, initializing new game");
-            window.initializeGame();
+            console.error("Restored game state failed integrity check, waiting for user to start new game");
+            // Game will be initialized when user clicks the start button
         }
     }
 });
 
 // Fallback initialization if DOMContentLoaded already fired
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    console.log("DOM already loaded, initializing game with fallback");
+    console.log("DOM already loaded, initializing with fallback");
     setTimeout(() => {
-        // Check if game already initialized
-        const gameOutput = document.getElementById("game-output");
-        if (gameOutput && gameOutput.innerHTML.trim() === '') {
-            console.log("Game not initialized, calling initializeGame via fallback");
-            
-            // Ensure DOM structure is intact
-            if (typeof window.ensureDOMStructure === 'function') {
-                window.ensureDOMStructure();
-            }
-            
-            // Explicitly set up restart button
-            setupRestartButton();
-            
-            // Set up UI event listeners if not already done
-            if (typeof window.setupUIEventListeners === 'function') {
-                window.setupUIEventListeners(window.initializeGame);
-            } else {
-                console.error("setupUIEventListeners not available in fallback");
-            }
-            
-            // Initialize the game
-            if (typeof window.initializeGame === 'function') {
-                window.initializeGame();
-            } else {
-                console.error("initializeGame not available in fallback");
-                
-                // Last resort - reload the page
-                alert("Critical game functions missing. The page will reload to recover.");
-                window.location.reload();
-            }
+        // Initialize global variables
+        initializeGlobals();
+        
+        // Set up start button
+        setupStartButton();
+        
+        // Explicitly set up restart button
+        setupRestartButton();
+        
+        // Set up UI event listeners if not already done
+        if (typeof window.setupUIEventListeners === 'function') {
+            window.setupUIEventListeners(window.initializeGame);
         } else {
-            // Game appears to be initialized, verify state integrity
-            if (!checkGameState()) {
-                console.error("Game state failed integrity check during fallback, attempting recovery");
-                
-                // Attempt to recover by reinitializing
-                if (typeof window.initializeGame === 'function') {
-                    if (confirm("The game appears to be in an invalid state. Would you like to restart?")) {
-                        localStorage.removeItem('hyperionNexusGameState');
-                        window.initializeGame();
-                    }
-                }
-            }
+            console.error("setupUIEventListeners not available in fallback");
         }
+        
+        console.log("Fallback initialization complete, waiting for user to click 'Begin Your Journey'");
     }, 100);
 }
 
+// Log available global functions for debugging
 console.log("Hyperion Nexus Game module loaded, global objects available:", {
     gameState: typeof window.gameState,
     initializeGame: typeof window.initializeGame,
     showSpeciesCreationQuestion: typeof window.showSpeciesCreationQuestion,
-    displayCurrentState: typeof window.displayCurrentState,
-    transitionGamePhase: typeof window.transitionGamePhase,
-    ensureDOMStructure: typeof window.ensureDOMStructure
+    displayCurrentState: typeof window.displayCurrentState
 });
